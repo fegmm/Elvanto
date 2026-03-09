@@ -4,6 +4,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <!-- NuGet Packaging Properties -->
+    <PackageId>Fegmm.Elvanto</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Fegmm</Authors>
+    <Description>Automatically generated .NET API Client for Elvanto</Description>
+    <RepositoryUrl>https://github.com/fegmm/elvanto</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,0 +1,70 @@
+name: Generate and Publish Elvanto API Client
+
+on:
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed to authenticate againsts nuget 
+      contents: write # Needed to push changes to the repo
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install Kiota CLI
+        run: dotnet tool install --global Microsoft.OpenApi.Kiota
+
+      - name: Run Client Generation
+        id: generate
+        shell: pwsh
+        run: |
+          ./scripts/build-client.ps1
+
+      - name: Bump Version
+        shell: pwsh
+        run: |
+          $csprojPath = "Fegmm.Elvanto/Fegmm.Elvanto.csproj"
+          [xml]$project = Get-Content $csprojPath
+          $currentVersion = [version]$project.Project.PropertyGroup.Version
+          
+          # Increment the build/revision number
+          $newVersion = "{0}.{1}.{2}" -f $currentVersion.Major, $currentVersion.Minor, ($currentVersion.Build + 1)
+          
+          $project.Project.PropertyGroup.Version = $newVersion
+          $project.Save($csprojPath)
+          Write-Host "Bumped version to $newVersion"
+          echo "NEW_VERSION=$newVersion" >> $env:GITHUB_ENV
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add Fegmm.Elvanto/Fegmm.Elvanto.csproj
+          git commit -m "chore: Auto increased package version to v${{ env.NEW_VERSION }}"
+          git push
+
+      - name: Pack NuGet Package
+        run: |
+          dotnet pack Fegmm.Elvanto/Fegmm.Elvanto.csproj -c Release -o ./artifacts
+
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Publish NuGet Package
+        run: |
+          dotnet nuget push ./artifacts/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+
+  
