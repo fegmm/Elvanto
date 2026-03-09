@@ -1,0 +1,46 @@
+paths:
+  /people/customFields/getAll.json:
+    post:
+      summary: Get a list of all Custom Fields.
+      tags:
+        - People
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomFieldsQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/CustomFieldsQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CustomFieldsQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            custom_fields:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    custom_field: 
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id: {type: string}
+                          name: {type: string}
+                          type: {type: string}
+                          values: 
+                            type: object
+                            properties:
+                              value: 
+                                type: array
+                                items: {$ref: '#/components/schemas/IdName'}

@@ -1,0 +1,51 @@
+paths:
+  /songs/arrangements/create.json:
+    post:
+      summary: Creates an arrangement tied to a specified song.
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                song_id: {type: string}
+                name: {type: string}
+                copyright: {type: string}
+                sequence: {type: array, items: {type: string}}
+                minutes: {type: number}
+                seconds: {type: number}
+                bpm: {type: number}
+                key_male: {type: string}
+                key_female: {type: string}
+                chord_chart_key: {type: string}
+                chord_chart: {type: string}
+                keys: {type: array, items: {type: object}}
+                keys_alternate: {type: array, items: {type: object}}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CreateArrangementResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/CreateArrangementResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateArrangementResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            arrangements:
+              id: {type: string}
+              keys:
+                type: array
+                items: {$ref: '#/components/schemas/IdName'}

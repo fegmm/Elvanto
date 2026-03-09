@@ -1,0 +1,43 @@
+paths:
+  /financial/categories/create.json:
+    post:
+      summary: Creates a new category in the chart of accounts
+      tags:
+        - Financial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: {type: string}
+                status: {type: integer, default: 1}
+                tax_deductible: {type: string, enum: ["y", "n"], default: "n"}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CreateTransactionCategoryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/CreateTransactionCategoryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateTransactionCategoryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            category:
+              type: object
+              properties:
+                id: {type: string}
+                status: {$ref: '#/components/schemas/BooleanIntEnum'}
+                name: {type: string}
+                tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}

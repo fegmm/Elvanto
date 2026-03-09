@@ -1,0 +1,20 @@
+paths:
+  /people/currentUser.json:
+    post:
+      summary: Current User
+      tags:
+        - People
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PersonResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/PersonResponse'
+                    fail: '#/components/schemas/ErrorResponse'

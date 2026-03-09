@@ -1,0 +1,28 @@
+paths:
+  /groups/removePerson.json:
+    post:
+      summary: Remove a person from a group.
+      tags:
+        - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                person_id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GroupPersonModifiedResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/GroupPersonModifiedResponse'
+                    fail: '#/components/schemas/ErrorResponse'

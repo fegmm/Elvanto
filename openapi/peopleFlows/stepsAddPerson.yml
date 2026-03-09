@@ -1,0 +1,39 @@
+paths:
+  /peopleFlows/steps/addPerson.json:
+    post:
+      summary: Add person to a specified People Flow Step
+      tags:
+        - PeopleFlows
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                step_id: {type: string}
+                person_id: {type: string}
+                assign_to: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/AddPersonToStepResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/AddPersonToStepResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    AddPersonToStepResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            step_person:
+              type: array
+              items: {type: string}

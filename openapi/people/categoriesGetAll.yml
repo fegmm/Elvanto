@@ -1,0 +1,40 @@
+paths:
+  /people/categories/getAll.json:
+    post:
+      summary: Get All People Categories
+      tags:
+        - People
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PeopleCategoriesResponseQuery'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/PeopleCategoriesResponseQuery'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    PeopleCategoriesResponseQuery:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            categories:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    category: 
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id: {type: string}
+                          name: {type: string}
+                          color: {type: string}

@@ -1,0 +1,45 @@
+paths:
+  /songs/keys/getAll.json:
+    post:
+      summary: Get a list of keys within an arrangement
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    arrangement_id: {type: string}
+                    files: {type: boolean}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/KeysQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/KeysQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    KeysQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            keys:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    key:
+                      type: array
+                      items: {$ref: '#/components/schemas/ArrangementKey'}

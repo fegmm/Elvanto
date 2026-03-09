@@ -1,0 +1,44 @@
+paths:
+  /calendar/getAll.json:
+    post:
+      summary: Get a list of all Calendars
+      tags:
+        - Events
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CalendarQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/CalendarQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CalendarQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            calendars:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    calendar:
+                      type: array
+                      items: {$ref: '#/components/schemas/Calendar'}
+    Calendar:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+        color: {type: string}
+        members: {type: boolean}
+        published: {type: boolean}
+      

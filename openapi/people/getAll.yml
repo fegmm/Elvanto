@@ -1,0 +1,37 @@
+paths:
+  /people/getAll.json:
+    post:
+      operationId: PeopleGetAll
+      summary: Get a list of all people
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    category_id: {type: array, items: {type: string}}
+                    suspended: {$ref: '#/components/schemas/FilterEnum'}
+                    contact: {$ref: '#/components/schemas/FilterEnum'}
+                    archived: {$ref: '#/components/schemas/FilterEnum'}
+                    fields:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PeopleAdditionalQueryFields'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PeopleQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/PeopleQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'

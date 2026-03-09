@@ -1,0 +1,39 @@
+paths:
+  /songs/arrangements/getInfo.json:
+    post:
+      summary: Get Arrangement Info
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                chord_chart_key: {type: string}
+                files: {type: boolean}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ArrangementResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/ArrangementResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ArrangementResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            arrangement:
+              type: array
+              items: {$ref: '#/components/schemas/Arrangement'}

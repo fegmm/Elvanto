@@ -1,0 +1,64 @@
+paths:
+  /people/search.json:
+    post:
+      summary: Search People
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    search:
+                      type: object
+                      properties:
+                        date_added: {type: string, format: date-time}
+                        date_modified: {type: string, format: date-time}
+                        category_id: {type: string}
+                        firstname: {type: string}
+                        preferred_name: {type: string}
+                        lastname: {type: string}
+                        email: {type: string}
+                        phone: {type: string}
+                        mobile: {type: string}
+                        archived: {type: string, enum: [yes, no, all]}
+                        contact: {type: string, enum: [yes, no, all]}
+                        deceased: {type: string, enum: [yes, no, all]}
+                        volunteer: {$ref: '#/components/schemas/BooleanIntEnum'}
+                        last_login: {type: string, format: date-time}
+                        gender: {type: string}
+                        birthday: {type: string, format: date}
+                        anniversary: {type: string, format: date}
+                        school_grade: {type: string}
+                        marital_status: {$ref: '#/components/schemas/MaritalStatus'}
+                        development_child: {$ref: '#/components/schemas/BooleanStringEnum'}
+                        special_needs_child: {$ref: '#/components/schemas/BooleanStringEnum'}
+                        security_code: {type: string}
+                        receipt_name: {type: string}
+                        giving_number: {type: string}
+                        groups: {type: array, items: {type: string}}
+                    fields:
+                      type: array
+                      items:
+                        oneOf:
+                          - type: string
+                            enum: [gender, birthday, anniversary, school_grade, marital_status, development_child, special_needs_child, security_code, receipt_name, giving_number, mailing_address, mailing_address2, mailing_city, mailing_state, mailing_postcode, mailing_country, home_address, home_address2, home_city, home_state, home_postcode, home_country, access_permissions, departments, service_types, demographics, locations, family, reports_to]
+                          - type: string
+                            pattern: ^custom_.*$
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PeopleQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/PeopleQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'

@@ -1,0 +1,11 @@
+components:
+  schemas:
+    EventModifiedResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            event:
+              type: object
+              properties:
+                id: {type: string}

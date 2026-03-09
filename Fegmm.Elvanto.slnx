@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Fegmm.Elvanto/Fegmm.Elvanto.csproj" />
+  <Project Path="Fegmm.Elvanto.Tests/Fegmm.Elvanto.Tests.csproj" />
+</Solution>

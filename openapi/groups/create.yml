@@ -1,0 +1,79 @@
+paths:
+  /groups/create.json:
+    post:
+      summary: Create a new group.
+      tags:
+        - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the group.
+                status: { $ref: '#/components/schemas/GroupState' }
+                meeting_address:
+                  type: string
+                  description: The meeting address of the group.
+                meeting_city:
+                  type: string
+                  description: The meeting city of the group.
+                meeting_state:
+                  type: string
+                  description: The meeting state of the group.
+                meeting_postcode:
+                  type: string
+                  description: The meeting postcode of the group.
+                meeting_country:
+                  type: string
+                  description: The meeting country of the group.
+                meeting_start_date:
+                  type: string
+                  format: date
+                  description: The date the group commenced. E.g. 2026-12-30
+                meeting_start_time:
+                  type: string
+                  description: The time of day that the group meets. Needs to be in a valid time format. E.g 1:00 PM or 13:00
+                meeting_end_time:
+                  type: string
+                  description: The time of day that the group finishes its meeting. Needs to be in a valid time format. E.g 1:00 PM or 13:00
+                meeting_end_date:
+                  type: string
+                  format: date
+                  description: The date the group finishes. E.g 2026-12-30
+                meeting_frequency: {$ref: '#/components/schemas/GroupMeetingFrequency'}
+                fields:
+                  type: object
+                  properties:
+                    categories: 
+                      type: array
+                      items: {type: string}
+                      description: The categories this group is assigned to.
+                    departments: 
+                      type: array
+                      items: {type: string}
+                      description: The departments this group is assigned to.
+                    demographics: 
+                      type: array
+                      items: {type: string}
+                      description: The demographics this group is assigned to.
+                    locations: 
+                      type: array
+                      items: {type: string}
+                      description: The locations this group is assigned to.
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GroupModifiedResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/GroupModifiedResponse'
+                    fail: '#/components/schemas/ErrorResponse'

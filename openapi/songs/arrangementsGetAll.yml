@@ -1,0 +1,46 @@
+paths:
+  /songs/arrangements/getAll.json:
+    post:
+      summary: Get a list of arrangements within a song
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    song_id: {type: string}
+                    chord_chart_key: {type: string}
+                    files: {type: boolean}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ArrangementsQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/ArrangementsQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ArrangementsQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            arrangements:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    arrangement:
+                      type: array
+                      items: {$ref: '#/components/schemas/Arrangement'}

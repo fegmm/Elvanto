@@ -1,0 +1,84 @@
+paths:
+  /people/edit.json:
+    post:
+      summary: Edit an existing person.
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                firstname: {type: string}
+                preferred_name: {type: string}
+                lastname: {type: string}
+                email: {type: string}
+                phone: {type: string}
+                mobile: {type: string}
+                category_id: {type: string}
+                archived: {allOf: [{$ref: '#/components/schemas/BooleanStringEnum'}, {default: no}]}
+                contact: {allOf: [{$ref: '#/components/schemas/BooleanStringEnum'}, {default: no}]}
+                volunteer: {allOf: [{$ref: '#/components/schemas/BooleanStringEnum'}, {default: no}]}
+                status: {allOf: [{$ref: '#/components/schemas/PersonStatus'}, {default: active}]}
+                username: {type: string}
+                password: {type: string}
+                family_id: {type: string}
+                family_relationship: {$ref: '#/components/schemas/FamilyRelationship'}
+                fields:
+                  type: object
+                  properties:
+                    gender: {$ref: '#/components/schemas/Gender'}
+                    birthday: {type: string, format: date}
+                    anniversary: {type: string, format: date}
+                    school_grade: {type: string}
+                    marital_status: {$ref: '#/components/schemas/MaritalStatus'}
+                    development_child: {$ref: '#/components/schemas/BooleanStringEnum'}
+                    special_needs_child: {$ref: '#/components/schemas/BooleanStringEnum'}
+                    security_code: {type: string}
+                    receipt_name: {type: string}
+                    giving_number: {type: string}
+                    mailing_address: {type: string}
+                    mailing_address2: {type: string}
+                    mailing_city: {type: string}
+                    mailing_state: {type: string}
+                    mailing_postcode: {type: string}
+                    mailing_country: {type: string}
+                    home_address: {type: string}
+                    home_address2: {type: string}
+                    home_city: {type: string}
+                    home_state: {type: string}
+                    home_postcode: {type: string}
+                    home_country: {type: string}
+                    access_permissions: {type: array, items: {type: string}}
+                    access_permissions_replace: {type: array, items: {type: string}}
+                    access_permissions_remove: {type: array, items: {type: string}}
+                    departments: {type: array, items: {type: string}}
+                    departments_replace: {type: array, items: {type: string}}
+                    departments_remove: {type: array, items: {type: string}}
+                    service_types: {type: array, items: {type: string}}
+                    service_types_replace: {type: array, items: {type: string}}
+                    service_types_remove: {type: array, items: {type: string}}
+                    demographics: {type: array, items: {type: string}}
+                    demographics_replace: {type: array, items: {type: string}}
+                    demographics_remove: {type: array, items: {type: string}}
+                    locations: {type: array, items: {type: string}}
+                    locations_replace: {type: array, items: {type: string}}
+                    locations_remove: {type: array, items: {type: string}}
+                    reports_to: {type: string}
+                  additionalProperties: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PersonUpsertedResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/PersonUpsertedResponse'
+                    fail: '#/components/schemas/ErrorResponse'

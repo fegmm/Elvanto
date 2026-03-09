@@ -1,0 +1,54 @@
+paths:
+  /services/getAll.json:
+    post:
+      summary: Get a list of services
+      tags:
+        - Services
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    all: {allOf: [{$ref: '#/components/schemas/BooleanStringEnum'}, {default: no}]}
+                    start: {type: string, format: date}
+                    end: {type: string, format: date}
+                    status: {type: string, enum: [published, draft]}
+                    service_types: {type: array, items: {type: string}}
+                    fields:
+                      type: array
+                      items:
+                        type: string
+                        enum: [series_name, service_times, rehearsal_times, other_times, plans, volunteers, songs, files, notes, picture]
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ServiceQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/ServiceQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ServiceQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            services:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    service:
+                      type: array
+                      items: {$ref: '#/components/schemas/Service'}
+                      

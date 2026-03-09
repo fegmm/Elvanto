@@ -1,0 +1,29 @@
+paths:
+  /groups/addPerson.json:
+    post:
+      summary: Add a person to a group.
+      tags:
+        - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                person_id: {type: string}
+                position: {type: string, enum: [Leader, Assistant Leader], default: null}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GroupPersonModifiedResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/GroupPersonModifiedResponse'
+                    fail: '#/components/schemas/ErrorResponse'

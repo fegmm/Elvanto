@@ -1,0 +1,47 @@
+paths:
+  /songs/arrangements/edit.json:
+    post:
+      summary: Edit an arrangement
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                name: {type: string}
+                copyright: {type: string}
+                sequence: {type: array, items: {type: string}}
+                minutes: {type: number}
+                seconds: {type: number}
+                bpm: {type: number}
+                key_male: {type: string}
+                key_female: {type: string}
+                chord_chart_key: {type: string}
+                chord_chart: {type: string}
+                lyrics: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EditArrangementResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/EditArrangementResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EditArrangementResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            arrangements:
+              id: {type: string}

@@ -1,0 +1,38 @@
+paths:
+  /calendar/events/remove.json:
+    post:
+      summary: Delete a calendar event.
+      tags:
+        - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EventDeleteResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/EventDeleteResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EventDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            event:
+              type: object
+              properties:
+                id: {type: string}
