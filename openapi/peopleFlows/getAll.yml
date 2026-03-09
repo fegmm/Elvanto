@@ -1,0 +1,55 @@
+paths:
+  /peopleFlows/getAll.json:
+    post:
+      summary: Get all people flows
+      tags:
+        - PeopleFlows
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/FlowsQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/FlowsQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    FlowsQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            people_flows:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    people_flow:
+                      type: array
+                      items: {$ref: '#/components/schemas/Flow'}
+    Flow:
+      type: object
+      properties:
+        status: {type: string}
+        name: {type: string}
+        access: {type: string}
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              name: {type: string}
+              status: {type: string}
+              entry_point: {type: string}
+              steps: {type: array, items: {type: string}}
+              admins: {type: array, items: {type: string}}
+        admins: {type: array, items: {type: string}}
+        locations: {$ref: '#/components/schemas/Locations'}
+        demographics: {$ref: '#/components/schemas/Demographics'}
+        id: {type: string}

@@ -1,0 +1,65 @@
+paths:
+  /peopleFlows/steps/getAll.json:
+    post:
+      summary: List all people flow steps
+      tags:
+        - PeopleFlows
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                flow_id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/FlowStepsQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/FlowStepsQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    FlowStepsQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            people_flow_steps:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    people_flow_step:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FlowStep'
+    FlowStep:
+      type: object
+      properties:
+        priority: {type: string}
+        status: {type: string}
+        name: {type: string}
+        description: {type: string}
+        instructions: {type: string}
+        notifications: {type: string}
+        entry_point: {type: string}
+        step_due: {type: object}
+        admins: 
+          type: array
+          items: 
+            type: object
+            properties:
+              id: {type: string}
+              role: {type: string}
+        id: {type: string}
+        steps: 
+          type: array
+          items: {$ref: '#/components/schemas/FlowStep'}

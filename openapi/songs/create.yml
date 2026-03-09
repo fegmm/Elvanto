@@ -1,0 +1,50 @@
+paths:
+  /songs/create.json:
+    post:
+      summary: Create Song
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: {type: string}
+                arrangements: {type: array, items: {type: object}}
+                status: {type: integer, description: "0 for published, 1 for archived", default: 0}
+                number: {type: integer}
+                item: {type: integer, default: 0}
+                learn: {type: integer, default: 0}
+                allow_downloads: {type: integer, default: 0}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CreateSongResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/CreateSongResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateSongResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            song:
+              type: object
+              properties:
+                id: {type: string}
+                arrangements:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id: {type: string}

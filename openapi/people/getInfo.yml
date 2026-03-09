@@ -1,0 +1,35 @@
+paths:
+  /people/getInfo.json:
+    post:
+      summary: Get Person Info
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                fields:
+                  type: array
+                  items:
+                    oneOf:
+                      - type: string
+                        enum: [gender, birthday, anniversary, school_grade, marital_status, development_child, special_needs_child, security_code, receipt_name, giving_number, mailing_address, mailing_address2, mailing_city, mailing_state, mailing_postcode, mailing_country, home_address, home_address2, home_city, home_state, home_postcode, home_country, access_permissions, departments, service_types, demographics, locations, family, reports_to]
+                      - type: string
+                        pattern: ^custom_.*$
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PersonResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/PersonResponse'
+                    fail: '#/components/schemas/ErrorResponse'

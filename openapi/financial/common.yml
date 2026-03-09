@@ -1,0 +1,64 @@
+components:
+  schemas:
+    UpsertTransactionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            transaction:
+              type: object
+              properties:
+                id: {type: string}
+                batch:
+                  type: object
+                  properties:
+                    id: {type: string}
+                    number: {type: integer}
+                    name: {type: string}
+                person:
+                  type: object
+                  properties:
+                    id: {type: string}
+                    firstname: {type: string}
+                    lastname: {type: string}
+    Transaction:
+      type: object
+      properties:
+        id: {type: string}
+        person_id: {type: string}
+        person_first_name: {type: string}
+        person_last_name: {type: string}
+        person_email: {type: string}
+        transaction_date: {type: string, format: date}
+        transaction_datetime: {type: string, format: date-time}
+        transaction_method: {type: string}
+        check_number: {type: string}
+        batch:
+          type: object
+          properties:
+            id: {type: string}
+            number: {type: integer}
+            name: {type: string}
+        transaction_total: {type: number}
+        amounts:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: array
+                items:
+                  id: {type: string}
+                  category: {$ref: '#/components/schemas/IdName'}
+                  total: {type: number}
+                  tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}
+                  memo: {type: string}
+                  external_notes: {type: string}
+        created_by_id: {type: string}
+        created_by_first_name: {type: string}
+        created_by_last_name: {type: string}
+        created_at: {type: string, format: date-time}
+        updated_by_id: {type: string}
+        updated_by_first_name: {type: string}
+        updated_by_last_name: {type: string}
+        updated_at: {type: string, format: date-time}

@@ -1,0 +1,42 @@
+paths:
+  /services/getInfo.json:
+    post:
+      summary: Get info
+      tags:
+        - Services
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                fields:
+                  type: array
+                  items:
+                    type: string
+                    enum: [series_name, service_times, rehearsal_times, other_times, plans, volunteers, songs, files, notes, picture]
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ServiceResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/ServiceResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ServiceResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            service:
+              type: array
+              items: {$ref: '#/components/schemas/Service'}

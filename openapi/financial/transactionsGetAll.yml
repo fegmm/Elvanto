@@ -1,0 +1,46 @@
+paths:
+  /financial/transactions/getAll.json:
+    post:
+      summary: Get a list of all transactions between two dates.
+      tags:
+        - Financial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    start: {type: string, format: date}
+                    end: {type: string, format: date}
+                    category_id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/TransactionsQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/TransactionsQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    TransactionsQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            transactions:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    transaction:
+                      type: array
+                      items: {$ref: '#/components/schemas/Transaction'}

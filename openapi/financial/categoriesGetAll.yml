@@ -1,0 +1,46 @@
+paths:
+  /financial/categories/getAll.json:
+    post:
+      summary: Get a list of all chart of accounts categories.
+      tags:
+        - Financial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/TransactionCategoriesQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/TransactionCategoriesQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    TransactionCategoriesQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            categories:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    category:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id: {type: string}
+                          status: {$ref: '#/components/schemas/BooleanIntEnum'}
+                          name: {type: string}

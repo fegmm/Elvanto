@@ -1,0 +1,47 @@
+paths:
+  /calendar/events/create.json:
+    post:
+      summary: Create a new calendar event.
+      tags:
+        - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: {type: string}
+                calendar_id: {type: string}
+                status: {type: string, enum: [public, private, draft]}
+                start: {type: string, format: date-time}
+                end: {type: string, format: date-time}
+                all_day: {$ref: '#/components/schemas/BooleanStringEnum'}
+                where: {type: string}
+                description: {type: string}
+                color: {type: string}
+                organizer: {type: string}
+                register_url: {type: string}
+                register_form: {type: string}
+                who_can_attend: {type: string}
+                show_guest_list: {$ref: '#/components/schemas/BooleanStringEnum'}
+                repeat: {type: string}
+                repeat_frequency: {type: integer}
+                repeat_on: {type: string}
+                repeat_occurrences: {type: integer}
+                repeat_end_date: {type: string, format: date-time}
+                locations: {type: array, items: {type: string}}
+                assets: {type: array, items: {type: string}}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EventModifiedResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/EventModifiedResponse'
+                    fail: '#/components/schemas/ErrorResponse'

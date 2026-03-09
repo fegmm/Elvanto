@@ -1,0 +1,43 @@
+paths:
+  /groups/getInfo.json:
+    post:
+      summary: Get information about a specific group
+      tags:
+        - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                fields:
+                  type: array
+                  items:
+                    type: string
+                    enum: [people, categories, departments, demographics, locations]
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GroupResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/GroupResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    GroupResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            group:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'

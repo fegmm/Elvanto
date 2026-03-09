@@ -1,0 +1,42 @@
+paths:
+  /songs/keys/create.json:
+    post:
+      summary: Creates a key attached to a specified arrangement.
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                arrangement_id: {type: string}
+                name: {type: string}
+                key_starting: {type: string}
+                key_ending: {type: string}
+                keys_alternate: {type: array, items: {type: object}}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CreateKeyResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/CreateKeyResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateKeyResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            key:
+              type: object
+              properties:
+                id: {type: string}

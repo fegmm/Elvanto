@@ -1,0 +1,38 @@
+paths:
+  /financial/transactions/remove.json:
+    post:
+      summary: Delete a transaction.
+      tags:
+        - Financial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/DeleteTransactionResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/DeleteTransactionResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    DeleteTransactionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            transaction:
+              type: object
+              properties:
+                id: {type: string}

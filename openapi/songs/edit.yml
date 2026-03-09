@@ -1,0 +1,53 @@
+paths:
+  /songs/edit.json:
+    post:
+      summary: Edit Song
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                title: {type: string}
+                status: {type: integer, default: 0}
+                number: {type: integer}
+                item: {type: integer, default: 0}
+                learn: {type: integer, default: 0}
+                allow_downloads: {type: integer, default: 0}
+                artist: {type: string}
+                album: {type: string}
+                notes: {type: string}
+                categories: {type: array, items: {type: string}}
+                categories_replace: {type: array, items: {type: string}}
+                categories_remove: {type: array, items: {type: string}}
+                locations: {type: array, items: {type: string}}
+                locations_replace: {type: array, items: {type: string}}
+                locations_remove: {type: array, items: {type: string}}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EditSongResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/EditSongResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EditSongResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            song:
+              type: object
+              properties:
+                id: {type: string}

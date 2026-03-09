@@ -1,0 +1,27 @@
+paths:
+  /groups/remove.json:
+    post:
+      summary: Delete a group.
+      tags:
+        - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GroupModifiedResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/GroupModifiedResponse'
+                    fail: '#/components/schemas/ErrorResponse'

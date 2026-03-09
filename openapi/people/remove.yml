@@ -1,0 +1,35 @@
+paths:
+  /people/remove.json:
+    post:
+      summary: Delete a person.
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/DeletePersonResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/DeletePersonResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    DeletePersonResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            id: {type: string}

@@ -1,0 +1,75 @@
+paths:
+  /calendar/events/getAll.json:
+    post:
+      summary: Get All Events
+      tags:
+        - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    start: {type: string, format: date}
+                    end: {type: string, format: date}
+                    calendar: {type: array, items: {type: string}}
+                    fields:
+                      type: array
+                      items:
+                        type: string
+                        enum: [locations, assets, register_url]
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EventQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/EventQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EventQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            events:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    event:
+                      type: array
+                      items: {$ref: '#/components/schemas/Event'}
+    Event:
+      type: object
+      properties:
+        id: {type: string}
+        picture: {type: string}
+        calendar_id: {type: string}
+        interval: {type: string}
+        name: {type: string}
+        description: {type: string}
+        admin_notes: {type: string}
+        where: {type: string}
+        start_date: {type: string, format: date-time}
+        end_date: {type: string, format: date-time}
+        all_day: {$ref: '#/components/schemas/BooleanIntEnum'}
+        url: {type: string}
+        color: {type: string}
+        locations: {$ref: '#/components/schemas/Locations'}
+        assets: 
+          type: object
+          properties:
+            asset:
+              type: array
+              items: {$ref: '#/components/schemas/IdName'}
+        register_url: {type: string}

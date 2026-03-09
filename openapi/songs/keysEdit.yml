@@ -1,0 +1,42 @@
+paths:
+  /songs/keys/edit.json:
+    post:
+      summary: Edit a key attached to a specified arrangement.
+      tags:
+        - Songs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: {type: string}
+                key_starting: {type: string}
+                name: {type: string}
+                key_ending: {type: string}
+                keys_alternate: {type: array, items: {type: object}}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EditKeyResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/EditKeyResponse'
+                    fail: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EditKeyResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            key:
+              type: object
+              properties:
+                id: {type: string}

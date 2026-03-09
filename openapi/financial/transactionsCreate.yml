@@ -1,0 +1,33 @@
+paths:
+  /financial/transactions/create.json:
+    post:
+      summary: Create a new transaction.
+      tags:
+        - Financial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch: {type: object}
+                person: {type: object}
+                transaction_date: {type: string, format: date}
+                transaction_datetime: {type: string, format: date-time}
+                transaction_method: {type: string}
+                check_number: {type: string}
+                amounts: {type: array, items: {type: object}}
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/UpsertTransactionResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/UpsertTransactionResponse'
+                    fail: '#/components/schemas/ErrorResponse'

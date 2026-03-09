@@ -1,0 +1,55 @@
+components:
+  schemas:
+    Arrangement:
+      type: object
+      properties:
+        id: {type: string}
+        date_added: {type: string, format: date-time}
+        date_modified: {type: string, format: date-time}
+        name: {type: string}
+        copyright: {type: string}
+        sequence:
+          type: array
+          items: {type: string}
+        minutes: {type: string}
+        seconds: {type: string}
+        bpm: {type: string}
+        key_male: {type: string}
+        key_female: {type: string}
+        lyrics: {type: string}
+        chord_chart_key: {type: string}
+        chord_chart: {type: string}
+    ArrangementKey:
+      type: object
+      properties:
+        id: {type: string}
+        date_added: {type: string, format: date-time}
+        date_modified: {type: string, format: date-time}
+        name: {type: string}
+        key_starting: {type: string}
+        key_ending: {type: string}
+        arrangement_id: {type: string}
+    Song:
+      type: object
+      properties:
+        id: {type: string}
+        status: {$ref: '#/components/schemas/BooleanIntEnum'}
+        date_added: {type: string, format: date-time}
+        date_modified: {type: string, format: date-time}
+        title: {type: string}
+        permalink: {type: string}
+        number: {type: string}
+        item: {type: integer}
+        learn: {$ref: '#/components/schemas/BooleanIntEnum'}
+        allow_downloads: {$ref: '#/components/schemas/BooleanIntEnum'}
+        artist: {type: string}
+        album: {type: string}
+        notes: {$ref: '#/components/schemas/Notes'}
+        categories:
+          type: object
+          properties:
+            category:
+              type: array
+              items: {$ref: '#/components/schemas/IdName'}
+        locations: {$ref: '#/components/schemas/Locations'}
+        files: {$ref: '#/components/schemas/Files'}

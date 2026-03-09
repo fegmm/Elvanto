@@ -1,0 +1,120 @@
+components:
+  schemas:
+    Family:
+      type: object
+      properties:
+        family_id: {type: integer}
+        family_member:
+          type: array
+          items:
+            type: object
+            properties:
+              id: {type: string}
+              firstname: {type: string}
+              lastname: {type: string}
+              relationship: {$ref: '#/components/schemas/FamilyRelationship'}
+    FamilyRelationship:
+      type: string
+      enum: [Primary Contact, Spouse, Partner, Child, Sibling, Grandfather, Grandmother, Other]
+    PeopleQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            people:
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    person:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Person'
+    PersonResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            person:
+              type: array
+              items:
+                $ref: '#/components/schemas/Person'
+    PersonUpsertedResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            person:
+              type: object
+              properties:
+                id: {type: string}
+                family_id: {type: integer}
+    PeopleAdditionalQueryFields:
+      type: string
+      enum: [gender, birthday, anniversary, school_grade, marital_status, development_child, special_needs_child, security_code, receipt_name, giving_number, mailing_address, mailing_address2, mailing_city, mailing_state, mailing_postcode, mailing_country, home_address, home_address2, home_city, home_state, home_postcode, home_country, access_permissions, departments, service_types, demographics, locations, family, reports_to]
+    MaritalStatus:
+      type: string
+      enum: [Single, Engaged, Married, Widowed, Divorced, Separated, Defacto]
+    PersonStatus:
+      type: string
+      enum: [Active, Suspended]
+    Gender:
+      type: string
+      enum: [Male, Female]
+    Person:
+      type: object
+      additionalProperties: true
+      properties:
+        id: {type: string}
+        date_added: {type: string, format: date-time}
+        date_modified: {type: string, format: date-time}
+        category_id: {type: string}
+        firstname: {type: string}
+        preferred_name: {type: string}
+        middle_name: {type: string}
+        lastname: {type: string}
+        email: {type: string}
+        phone: {type: string}
+        mobile: {type: string}
+        admin: {$ref: '#/components/schemas/BooleanIntEnum'}
+        deceased: {$ref: '#/components/schemas/BooleanIntEnum'}
+        archived: {$ref: '#/components/schemas/BooleanIntEnum'}
+        contact: {$ref: '#/components/schemas/BooleanIntEnum'}
+        volunteer: {$ref: '#/components/schemas/BooleanIntEnum'}
+        status: {$ref: '#/components/schemas/PersonStatus'}
+        username: {type: string}
+        last_login: {type: string, format: date-time}
+        country: {type: string}
+        timezone: {type: string}
+        picture: {type: string}
+        family_id: {type: integer}
+        family_relationship: {$ref: '#/components/schemas/FamilyRelationship'}
+        birthday: {type: string, format: date}
+        anniversary: {type: string, format: date}
+        gender: {$ref: '#/components/schemas/Gender'}
+        school_grade: {type: string}
+        marital_status: {$ref: '#/components/schemas/MaritalStatus'}
+        development_child: {$ref: '#/components/schemas/BooleanStringEnum'}
+        special_needs_child: {$ref: '#/components/schemas/BooleanStringEnum'}
+        security_code: {type: string}
+        receipt_name: {type: string}
+        giving_number: {type: string}
+        mailing_address: {type: string}
+        mailing_address2: {type: string}
+        mailing_city: {type: string}
+        mailing_state: {type: string}
+        mailing_postcode: {type: string}
+        mailing_country: {type: string}
+        home_address: {type: string}
+        home_address2: {type: string}
+        home_city: {type: string}
+        home_state: {type: string}
+        home_postcode: {type: string}
+        home_country: {type: string}
+        access_permissions: {$ref: '#/components/schemas/AccessPermissions'}
+        locations: {$ref: '#/components/schemas/Locations'}
+        departments: {$ref: '#/components/schemas/Departments'}
+        service_types: {$ref: '#/components/schemas/ServiceTypes'}
+        demographics: {$ref: '#/components/schemas/Demographics'}
+        family: {$ref: '#/components/schemas/Family'}
+        reports_to: {$ref: '#/components/schemas/IdName'}

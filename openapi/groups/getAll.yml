@@ -1,0 +1,35 @@
+paths:
+  /groups/getAll.json:
+    post:
+      summary: Get a list of all groups
+      tags:
+        - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PagedRequest'
+                - type: object
+                  properties:
+                    category_id: {type: array, items: {type: string}}
+                    suspended: {$ref: '#/components/schemas/FilterEnum'}
+                    fields:
+                      type: array
+                      items:
+                        type: string
+                        enum: [people, categories, departments, demographics, locations]
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GroupQueryResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+                discriminator:
+                  propertyName: status
+                  mapping:
+                    ok: '#/components/schemas/GroupQueryResponse'
+                    fail: '#/components/schemas/ErrorResponse'

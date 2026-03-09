@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "kiota generate -d ${workspaceFolder}/openapi.yaml -l CSharp -o ./Fegmm.Elvanto/Generated -c ElvantoClient -n Fegmm.Elvanto --clean-output",
+			"group": "build",
+			"label": "Generate Client Code",
+		}
+	]
+}

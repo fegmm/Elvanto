@@ -1,0 +1,133 @@
+openapi: 3.1.1
+info:
+  title: Elvanto API
+  version: 1.0.0
+  description: OpenAPI Specification for all endpoints described by Elvanto.
+servers:
+  - url: https://api.elvanto.com/v1
+    description: Main Elvanto API Server
+components:
+  schemas:
+    Response:
+      type: object
+      properties:
+        generated_in: {type: string}
+        status: {type: string, enum: [ok, fail]}
+    PagedResponse:
+      allOf:
+        - type: object
+          properties:
+            on_this_page: {type: integer}
+            page: {type: integer}
+            per_page: {type: integer}
+            total: {type: integer}
+    ErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            error:
+              type: object
+              properties:
+                code: {type: integer}
+                message: {type: string}
+    # Shared/Helper Objects
+    PagedRequest:
+      type: object
+      properties:
+        page: {type: integer, default: 1}
+        page_size: {type: integer, default: 1000}
+    IdName:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+    FilterEnum:
+      type: string
+      enum: [yes, no, all]
+      default: all
+    BooleanStringEnum:
+      type: string
+      enum: [No, Yes]
+    BooleanEnum:
+      type: string
+      enum: ["false", "true"]
+    BooleanIntEnum:
+      type: integer
+      enum: [0, 1]
+    AccessPermissions:
+      type: object
+      properties:
+        access_permission: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+    ServiceTypes:
+      type: object
+      properties:
+        service_type: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+    Categories:
+      type: object
+      properties:
+        category: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+    Departments:
+      type: object
+      properties:
+        department: 
+          type: array
+          items: 
+            type: object
+            properties:
+              id: {type: string}
+              name: {type: string}
+              sub_departments:
+                type: object
+                properties:
+                  sub_department:
+                    type: array
+                    items:
+                      id: {type: string}
+                      name: {type: string}
+                      positions:
+                        type: object
+                        properties:
+                          position: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+    Demographics:
+      type: object
+      properties:
+        demographic:
+          type: array
+          items: 
+            type: object
+            properties:
+              id: {type: string}
+              name: {type: string}
+              sub_demographics:
+                type: object
+                properties:
+                  sub_demographic: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+    Locations:
+      type: object
+      properties:
+        location: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+
+    Files:
+      type: object
+      properties:
+        file:
+          type: array
+          items:
+            type: object
+            properties:
+              id: {type: string}
+              title: {type: string}
+              type: {type: string, enum: [file, image, audio, video, chart, lyrics]}
+              html: {$ref: '#/components/schemas/BooleanIntEnum'}
+              content: {type: string}
+    Notes:
+      type: object
+      properties:
+        note:
+          type: array
+          items:
+            id: {type: string}
+            date_added: {type: string, format: date-time}
+            date_modified: {type: string, format: date-time}
+            note: {type: string}

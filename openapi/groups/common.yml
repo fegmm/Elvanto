@@ -1,0 +1,88 @@
+components:
+  schemas:
+    GroupPersonModifiedResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            group:
+              type: object
+              properties:
+                id: {type: string}
+                person_id: {type: string}
+    GroupModifiedResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            group:
+              type: object
+              properties:
+                id: {type: string}
+    GroupQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          properties:
+            groups: 
+              allOf:
+                - $ref: '#/components/schemas/PagedResponse'
+                - type: object
+                  properties:
+                    group:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Group'
+    GroupState: {type: string, enum: [active, suspended], description: The status of the group.}
+    GroupMeetingFrequency:
+      type: object
+      description: How often the group meets.
+      properties:
+        type: {type: string, enum: [weekly, monthly]}
+        count: {type: integer, description: The amount of weeks/months between meetings}
+        day: {type: string, enum: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday], description: The name of the day the group meets}
+        occurrence: 
+          type: array
+          description: The occurrence of the day within the month (only required for monthly meetings) }
+          items:
+              oneOf:
+                - type: integer
+                  enum: [1,2,3,4,5]
+                - type: string
+                  enum: [last]
+    Group:
+      type: object
+      properties:
+        date_added: {type: string, format: date-time}
+        date_modified: {type: string, format: date-time}
+        name: {type: string}
+        description: {type: string}
+        status: {type: string}
+        meeting_address: {type: string}
+        meeting_city: {type: string}
+        meeting_state: {type: string}
+        meeting_postcode: {type: string}
+        meeting_country: {type: string}
+        meeting_day: {type: string}
+        meeting_time: {type: string}
+        meeting_frequency: {type: string}
+        picture: {type: string}
+        id: {type: string}
+        people: {type: array, items: {$ref: '#/components/schemas/GroupMember'}}
+        categories: {$ref: '#/components/schemas/Categories'}
+        departments: {$ref: '#/components/schemas/Departments'}
+        demographics: {$ref: '#/components/schemas/Demographics'}
+        locations: {$ref: '#/components/schemas/Locations'}
+    GroupMember:
+      type: object
+      properties:
+        firstname: {type: string}
+        preferred_name: {type: string}
+        middle_name: {type: string}
+        lastname: {type: string}
+        email: {type: string}
+        mobile: {type: string}
+        phone: {type: string}
+        picture: {type: string}
+        position: {type: string}
+        id: {type: string}
