@@ -16,7 +16,7 @@ public class ElvantoClientFactory(HttpClient httpClient, IOptions<ElvantoOptions
     public ElvantoClient GetClient()
     {
         BasicAuthenticationProvider authProvider = new(_options.ApiToken, "-");
-        HttpClientRequestAdapter httpClientRequestAdapter = new(authProvider, httpClient: _httpClient, serializationWriterFactory: new ElvantoSerializationWriterFactory())
+        HttpClientRequestAdapter httpClientRequestAdapter = new(authProvider, httpClient: _httpClient, serializationWriterFactory: new ElvantoSerializationWriterFactory(), parseNodeFactory: new ElvantoParseNodeFactory())
         {
             BaseUrl = _options.BaseUrl,
         };

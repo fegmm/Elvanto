@@ -68,7 +68,10 @@ components:
         meeting_frequency: {type: string}
         picture: {type: string}
         id: {type: string}
-        people: {type: array, items: {$ref: '#/components/schemas/GroupMember'}}
+        people: 
+          type: object
+          properties:
+            person: {type: array, items: {$ref: '#/components/schemas/GroupMember'}}
         categories: {$ref: '#/components/schemas/Categories'}
         departments: {$ref: '#/components/schemas/Departments'}
         demographics: {$ref: '#/components/schemas/Demographics'}

@@ -12,8 +12,7 @@ public class GetAllGroupsTests : BaseTest
         {
             Fields = [.. Enum.GetValues<GetAllPostRequestBody_fields>()]
         };
-        var response = await client.Groups.GetAllJson.PostAsync(body, null,
-            TestContext.Current.CancellationToken);
+        var response = await client.Groups.GetAllJson.PostAsync(body, null, TestContext.Current.CancellationToken);
 
         Assert.NotNull(response?.GroupQueryResponse?.Groups?.Group);
         Assert.NotEmpty(response.GroupQueryResponse.Groups.Group);
