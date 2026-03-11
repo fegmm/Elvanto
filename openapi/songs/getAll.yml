@@ -37,11 +37,12 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            songs:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    song:
-                      type: array
-                      items: {$ref: '#/components/schemas/Song'}
+            songs: {$ref: '#/components/schemas/Songs'}
+    Songs:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            song:
+              type: array
+              items: {$ref: '#/components/schemas/Song'}

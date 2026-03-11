@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.ErrorResponse_error? Error { get; set; }
+        public global::Fegmm.Elvanto.Models.Error? Error { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.ErrorResponse_error Error { get; set; }
+        public global::Fegmm.Elvanto.Models.Error Error { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "error", n => { Error = n.GetObjectValue<global::Fegmm.Elvanto.Models.ErrorResponse_error>(global::Fegmm.Elvanto.Models.ErrorResponse_error.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<global::Fegmm.Elvanto.Models.Error>(global::Fegmm.Elvanto.Models.Error.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ErrorResponse_error>("error", Error);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Error>("error", Error);
         }
     }
 }

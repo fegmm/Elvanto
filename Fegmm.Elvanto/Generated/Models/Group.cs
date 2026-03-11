@@ -141,10 +141,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The people property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Group_people? People { get; set; }
+        public global::Fegmm.Elvanto.Models.GroupMembers? People { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Group_people People { get; set; }
+        public global::Fegmm.Elvanto.Models.GroupMembers People { get; set; }
 #endif
         /// <summary>The picture property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -204,7 +204,7 @@ namespace Fegmm.Elvanto.Models
                 { "meeting_state", n => { MeetingState = n.GetStringValue(); } },
                 { "meeting_time", n => { MeetingTime = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "people", n => { People = n.GetObjectValue<global::Fegmm.Elvanto.Models.Group_people>(global::Fegmm.Elvanto.Models.Group_people.CreateFromDiscriminatorValue); } },
+                { "people", n => { People = n.GetObjectValue<global::Fegmm.Elvanto.Models.GroupMembers>(global::Fegmm.Elvanto.Models.GroupMembers.CreateFromDiscriminatorValue); } },
                 { "picture", n => { Picture = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
@@ -233,7 +233,7 @@ namespace Fegmm.Elvanto.Models
             writer.WriteStringValue("meeting_state", MeetingState);
             writer.WriteStringValue("meeting_time", MeetingTime);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Group_people>("people", People);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.GroupMembers>("people", People);
             writer.WriteStringValue("picture", Picture);
             writer.WriteStringValue("status", Status);
             writer.WriteAdditionalData(AdditionalData);

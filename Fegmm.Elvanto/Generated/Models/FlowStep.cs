@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The admins property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.FlowStep_admins>? Admins { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FlowStepAdmin>? Admins { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.FlowStep_admins> Admins { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FlowStepAdmin> Admins { get; set; }
 #endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -127,7 +127,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "admins", n => { Admins = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FlowStep_admins>(global::Fegmm.Elvanto.Models.FlowStep_admins.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "admins", n => { Admins = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FlowStepAdmin>(global::Fegmm.Elvanto.Models.FlowStepAdmin.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "entry_point", n => { EntryPoint = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -147,7 +147,7 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FlowStep_admins>("admins", Admins);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FlowStepAdmin>("admins", Admins);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("entry_point", EntryPoint);
             writer.WriteStringValue("id", Id);

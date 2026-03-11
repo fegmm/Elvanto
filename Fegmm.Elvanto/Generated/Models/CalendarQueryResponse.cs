@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The calendars property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.CalendarQueryResponse_calendars? Calendars { get; set; }
+        public global::Fegmm.Elvanto.Models.Calendars? Calendars { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.CalendarQueryResponse_calendars Calendars { get; set; }
+        public global::Fegmm.Elvanto.Models.Calendars Calendars { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "calendars", n => { Calendars = n.GetObjectValue<global::Fegmm.Elvanto.Models.CalendarQueryResponse_calendars>(global::Fegmm.Elvanto.Models.CalendarQueryResponse_calendars.CreateFromDiscriminatorValue); } },
+                { "calendars", n => { Calendars = n.GetObjectValue<global::Fegmm.Elvanto.Models.Calendars>(global::Fegmm.Elvanto.Models.Calendars.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.CalendarQueryResponse_calendars>("calendars", Calendars);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Calendars>("calendars", Calendars);
         }
     }
 }

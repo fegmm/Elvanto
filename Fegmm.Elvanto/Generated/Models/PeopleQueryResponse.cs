@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The people property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.PeopleQueryResponse_people? People { get; set; }
+        public global::Fegmm.Elvanto.Models.People? People { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.PeopleQueryResponse_people People { get; set; }
+        public global::Fegmm.Elvanto.Models.People People { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "people", n => { People = n.GetObjectValue<global::Fegmm.Elvanto.Models.PeopleQueryResponse_people>(global::Fegmm.Elvanto.Models.PeopleQueryResponse_people.CreateFromDiscriminatorValue); } },
+                { "people", n => { People = n.GetObjectValue<global::Fegmm.Elvanto.Models.People>(global::Fegmm.Elvanto.Models.People.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.PeopleQueryResponse_people>("people", People);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.People>("people", People);
         }
     }
 }

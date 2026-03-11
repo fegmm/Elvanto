@@ -73,10 +73,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The steps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.Flow_steps>? Steps { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FlowStepSummary>? Steps { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.Flow_steps> Steps { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FlowStepSummary> Steps { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Flow"/> and sets the default values.
@@ -110,7 +110,7 @@ namespace Fegmm.Elvanto.Models
                 { "locations", n => { Locations = n.GetObjectValue<global::Fegmm.Elvanto.Models.Locations>(global::Fegmm.Elvanto.Models.Locations.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
-                { "steps", n => { Steps = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Flow_steps>(global::Fegmm.Elvanto.Models.Flow_steps.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "steps", n => { Steps = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FlowStepSummary>(global::Fegmm.Elvanto.Models.FlowStepSummary.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -127,7 +127,7 @@ namespace Fegmm.Elvanto.Models
             writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Locations>("locations", Locations);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("status", Status);
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Flow_steps>("steps", Steps);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FlowStepSummary>("steps", Steps);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

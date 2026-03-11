@@ -31,11 +31,12 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            categories:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    category:
-                      type: array
-                      items: {$ref: '#/components/schemas/IdName'}
+            categories: {$ref: '#/components/schemas/SongCategoriesFetched'}
+    SongCategoriesFetched:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            category:
+              type: array
+              items: {$ref: '#/components/schemas/IdName'}

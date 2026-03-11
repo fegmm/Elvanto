@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The categories property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.TransactionCategoriesQueryResponse_categories? Categories { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionCategories? Categories { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.TransactionCategoriesQueryResponse_categories Categories { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionCategories Categories { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "categories", n => { Categories = n.GetObjectValue<global::Fegmm.Elvanto.Models.TransactionCategoriesQueryResponse_categories>(global::Fegmm.Elvanto.Models.TransactionCategoriesQueryResponse_categories.CreateFromDiscriminatorValue); } },
+                { "categories", n => { Categories = n.GetObjectValue<global::Fegmm.Elvanto.Models.TransactionCategories>(global::Fegmm.Elvanto.Models.TransactionCategories.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.TransactionCategoriesQueryResponse_categories>("categories", Categories);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.TransactionCategories>("categories", Categories);
         }
     }
 }

@@ -21,22 +21,27 @@ components:
             page: {type: integer}
             per_page: {type: integer}
             total: {type: integer}
+    Error:
+      type: object
+      properties:
+        code: {type: integer}
+        message: {type: string}
     ErrorResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            error:
-              type: object
-              properties:
-                code: {type: integer}
-                message: {type: string}
+            error: {$ref: '#/components/schemas/Error'}
     # Shared/Helper Objects
     PagedRequest:
       type: object
       properties:
         page: {type: integer, default: 1}
         page_size: {type: integer, default: 1000}
+    IdObject:
+      type: object
+      properties:
+        id: {type: string}
     IdName:
       type: object
       properties:
@@ -46,6 +51,9 @@ components:
       type: string
       enum: [yes, no, all]
       default: all
+    BooleanCharEnum:
+      type: string
+      enum: ['y', 'n']
     BooleanStringEnum:
       type: string
       enum: [No, Yes]
@@ -67,67 +75,71 @@ components:
       type: object
       properties:
         category: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+    Department:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+        sub_departments: {$ref: '#/components/schemas/SubDepartments'}
+    SubDepartments:
+      type: object
+      properties:
+        sub_department: {type: array, items: {$ref: '#/components/schemas/SubDepartment'}}
+    SubDepartment:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+        positions: {$ref: '#/components/schemas/Positions'}
+    Positions:
+      type: object
+      properties:
+        position: {type: array, items: {$ref: '#/components/schemas/IdName'}}
     Departments:
       type: object
       properties:
-        department: 
-          type: array
-          items: 
-            type: object
-            properties:
-              id: {type: string}
-              name: {type: string}
-              sub_departments:
-                type: object
-                properties:
-                  sub_department:
-                    type: array
-                    items:
-                      id: {type: string}
-                      name: {type: string}
-                      positions:
-                        type: object
-                        properties:
-                          position: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+        department: {type: array, items: {$ref: '#/components/schemas/Department'}}
+    Demographic:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+        sub_demographics: {$ref: '#/components/schemas/SubDemographics'}
+    SubDemographics:
+      type: object
+      properties:
+        sub_demographic: {type: array, items: {$ref: '#/components/schemas/IdName'}}
     Demographics:
       type: object
       properties:
-        demographic:
-          type: array
-          items: 
-            type: object
-            properties:
-              id: {type: string}
-              name: {type: string}
-              sub_demographics:
-                type: object
-                properties:
-                  sub_demographic: {type: array, items: {$ref: '#/components/schemas/IdName'}}
+        demographic: {type: array, items: {$ref: '#/components/schemas/Demographic'}}
     Locations:
       type: object
       properties:
         location: {type: array, items: {$ref: '#/components/schemas/IdName'}}
-
+    File:
+      type: object
+      properties:
+        id: {type: string}
+        title: {type: string}
+        type: {$ref: '#/components/schemas/FileType'}
+        html: {$ref: '#/components/schemas/BooleanIntEnum'}
+        content: {type: string}
+    FileType:
+      type: string
+      enum: [file, image, audio, video, chart, lyrics]
     Files:
       type: object
       properties:
-        file:
-          type: array
-          items:
-            type: object
-            properties:
-              id: {type: string}
-              title: {type: string}
-              type: {type: string, enum: [file, image, audio, video, chart, lyrics]}
-              html: {$ref: '#/components/schemas/BooleanIntEnum'}
-              content: {type: string}
+        file: {type: array, items: {$ref: '#/components/schemas/File'}}
+    Note:
+      type: object
+      properties:
+        id: {type: string}
+        date_added: {type: string, format: date-time}
+        date_modified: {type: string, format: date-time}
+        note: {type: string}
     Notes:
       type: object
       properties:
-        note:
-          type: array
-          items:
-            id: {type: string}
-            date_added: {type: string, format: date-time}
-            date_modified: {type: string, format: date-time}
-            note: {type: string}
+        note: {type: array, items: {$ref: '#/components/schemas/Note'}}

@@ -35,11 +35,12 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            keys:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    key:
-                      type: array
-                      items: {$ref: '#/components/schemas/ArrangementKey'}
+            keys: {$ref: '#/components/schemas/ArrangementKeys'}
+    ArrangementKeys:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            key:
+              type: array
+              items: {$ref: '#/components/schemas/ArrangementKey'}

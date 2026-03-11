@@ -15,8 +15,7 @@ paths:
                   type: array
                   items:
                     oneOf:
-                      - type: string
-                        enum: [gender, birthday, anniversary, school_grade, marital_status, development_child, special_needs_child, security_code, receipt_name, giving_number, mailing_address, mailing_address2, mailing_city, mailing_state, mailing_postcode, mailing_country, home_address, home_address2, home_city, home_state, home_postcode, home_country, access_permissions, departments, service_types, demographics, locations, family, reports_to]
+                      - $ref: '#/components/schemas/PersonAdditionalFields'
                       - type: string
                         pattern: ^custom_.*$
       responses:

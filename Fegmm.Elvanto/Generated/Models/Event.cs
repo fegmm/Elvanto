@@ -27,10 +27,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The assets property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Event_assets? Assets { get; set; }
+        public global::Fegmm.Elvanto.Models.EventAssets? Assets { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Event_assets Assets { get; set; }
+        public global::Fegmm.Elvanto.Models.EventAssets Assets { get; set; }
 #endif
         /// <summary>The calendar_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -151,7 +151,7 @@ namespace Fegmm.Elvanto.Models
             {
                 { "admin_notes", n => { AdminNotes = n.GetStringValue(); } },
                 { "all_day", n => { AllDay = n.GetIntValue(); } },
-                { "assets", n => { Assets = n.GetObjectValue<global::Fegmm.Elvanto.Models.Event_assets>(global::Fegmm.Elvanto.Models.Event_assets.CreateFromDiscriminatorValue); } },
+                { "assets", n => { Assets = n.GetObjectValue<global::Fegmm.Elvanto.Models.EventAssets>(global::Fegmm.Elvanto.Models.EventAssets.CreateFromDiscriminatorValue); } },
                 { "calendar_id", n => { CalendarId = n.GetStringValue(); } },
                 { "color", n => { Color = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
@@ -176,7 +176,7 @@ namespace Fegmm.Elvanto.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("admin_notes", AdminNotes);
             writer.WriteIntValue("all_day", AllDay);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Event_assets>("assets", Assets);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.EventAssets>("assets", Assets);
             writer.WriteStringValue("calendar_id", CalendarId);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("description", Description);

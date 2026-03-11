@@ -47,7 +47,4 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            song:
-              type: object
-              properties:
-                id: {type: string}
+            song: {$ref: '#/components/schemas/IdObject'}

@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The arrangements property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Arrangements { get; set; }
+        public global::Fegmm.Elvanto.Models.ArrangementCreated? Arrangements { get; set; }
 #nullable restore
 #else
-        public UntypedNode Arrangements { get; set; }
+        public global::Fegmm.Elvanto.Models.ArrangementCreated Arrangements { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "arrangements", n => { Arrangements = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "arrangements", n => { Arrangements = n.GetObjectValue<global::Fegmm.Elvanto.Models.ArrangementCreated>(global::Fegmm.Elvanto.Models.ArrangementCreated.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UntypedNode>("arrangements", Arrangements);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ArrangementCreated>("arrangements", Arrangements);
         }
     }
 }

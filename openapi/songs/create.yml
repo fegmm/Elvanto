@@ -38,13 +38,11 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            song:
-              type: object
-              properties:
-                id: {type: string}
-                arrangements:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id: {type: string}
+            song: {$ref: '#/components/schemas/SongCreated'}
+    SongCreated:
+      type: object
+      properties:
+        id: {type: string}
+        arrangements:
+          type: array
+          items: {$ref: '#/components/schemas/IdObject'}

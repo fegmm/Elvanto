@@ -17,9 +17,9 @@ namespace Fegmm.Elvanto.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The amount of weeks/months between meetings</summary>
         public int? Count { get; set; }
-        /// <summary>The name of the day the group meets</summary>
-        public global::Fegmm.Elvanto.Models.GroupMeetingFrequency_day? Day { get; set; }
-        /// <summary>The occurrence of the day within the month (only required for monthly meetings) }</summary>
+        /// <summary>The day property</summary>
+        public global::Fegmm.Elvanto.Models.DayOfWeekObject? Day { get; set; }
+        /// <summary>The occurrence of the day within the month (only required for monthly meetings)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<int?>? Occurrence { get; set; }
@@ -28,7 +28,7 @@ namespace Fegmm.Elvanto.Models
         public List<int?> Occurrence { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Fegmm.Elvanto.Models.GroupMeetingFrequency_type? Type { get; set; }
+        public global::Fegmm.Elvanto.Models.GroupMeetingType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.GroupMeetingFrequency"/> and sets the default values.
         /// </summary>
@@ -55,9 +55,9 @@ namespace Fegmm.Elvanto.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "count", n => { Count = n.GetIntValue(); } },
-                { "day", n => { Day = n.GetEnumValue<global::Fegmm.Elvanto.Models.GroupMeetingFrequency_day>(); } },
+                { "day", n => { Day = n.GetEnumValue<global::Fegmm.Elvanto.Models.DayOfWeekObject>(); } },
                 { "occurrence", n => { Occurrence = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Fegmm.Elvanto.Models.GroupMeetingFrequency_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Fegmm.Elvanto.Models.GroupMeetingType>(); } },
             };
         }
         /// <summary>
@@ -68,9 +68,9 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("count", Count);
-            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.GroupMeetingFrequency_day>("day", Day);
+            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.DayOfWeekObject>("day", Day);
             writer.WriteCollectionOfPrimitiveValues<int?>("occurrence", Occurrence);
-            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.GroupMeetingFrequency_type>("type", Type);
+            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.GroupMeetingType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

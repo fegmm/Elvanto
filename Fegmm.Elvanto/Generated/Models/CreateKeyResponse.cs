@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The key property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.CreateKeyResponse_key? Key { get; set; }
+        public global::Fegmm.Elvanto.Models.IdObject? Key { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.CreateKeyResponse_key Key { get; set; }
+        public global::Fegmm.Elvanto.Models.IdObject Key { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "key", n => { Key = n.GetObjectValue<global::Fegmm.Elvanto.Models.CreateKeyResponse_key>(global::Fegmm.Elvanto.Models.CreateKeyResponse_key.CreateFromDiscriminatorValue); } },
+                { "key", n => { Key = n.GetObjectValue<global::Fegmm.Elvanto.Models.IdObject>(global::Fegmm.Elvanto.Models.IdObject.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.CreateKeyResponse_key>("key", Key);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.IdObject>("key", Key);
         }
     }
 }

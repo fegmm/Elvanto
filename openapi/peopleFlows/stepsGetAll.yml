@@ -32,15 +32,16 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            people_flow_steps:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    people_flow_step:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/FlowStep'
+            people_flow_steps: {$ref: '#/components/schemas/FlowSteps'}
+    FlowSteps:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            people_flow_step:
+              type: array
+              items:
+                $ref: '#/components/schemas/FlowStep'
     FlowStep:
       type: object
       properties:
@@ -54,12 +55,13 @@ components:
         step_due: {type: object}
         admins: 
           type: array
-          items: 
-            type: object
-            properties:
-              id: {type: string}
-              role: {type: string}
+          items: {$ref: '#/components/schemas/FlowStepAdmin'}
         id: {type: string}
-        steps: 
+        steps:
           type: array
           items: {$ref: '#/components/schemas/FlowStep'}
+    FlowStepAdmin:
+      type: object
+      properties:
+        id: {type: string}
+        role: {type: string}

@@ -19,10 +19,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The family_member property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.Family_family_member>? FamilyMember { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FamilyMember>? FamilyMember { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.Family_family_member> FamilyMember { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FamilyMember> FamilyMember { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Family"/> and sets the default values.
@@ -50,7 +50,7 @@ namespace Fegmm.Elvanto.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "family_id", n => { FamilyId = n.GetIntValue(); } },
-                { "family_member", n => { FamilyMember = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Family_family_member>(global::Fegmm.Elvanto.Models.Family_family_member.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "family_member", n => { FamilyMember = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FamilyMember>(global::Fegmm.Elvanto.Models.FamilyMember.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("family_id", FamilyId);
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Family_family_member>("family_member", FamilyMember);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FamilyMember>("family_member", FamilyMember);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

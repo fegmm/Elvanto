@@ -13,9 +13,7 @@ paths:
                 id: {type: string}
                 fields:
                   type: array
-                  items:
-                    type: string
-                    enum: [series_name, service_times, rehearsal_times, other_times, plans, volunteers, songs, files, notes, picture]
+                  items: {$ref: '#/components/schemas/ServiceAdditionalFields'}
       responses:
         '200':
           description: 'Success'

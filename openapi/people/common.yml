@@ -1,18 +1,17 @@
 components:
   schemas:
+    FamilyMember:
+      type: object
+      properties:
+        id: {type: string}
+        firstname: {type: string}
+        lastname: {type: string}
+        relationship: {$ref: '#/components/schemas/FamilyRelationship'}
     Family:
       type: object
       properties:
         family_id: {type: integer}
-        family_member:
-          type: array
-          items:
-            type: object
-            properties:
-              id: {type: string}
-              firstname: {type: string}
-              lastname: {type: string}
-              relationship: {$ref: '#/components/schemas/FamilyRelationship'}
+        family_member: {type: array, items: {$ref: '#/components/schemas/FamilyMember'}}
     FamilyRelationship:
       type: string
       enum: [Primary Contact, Spouse, Partner, Child, Sibling, Grandfather, Grandmother, Other]
@@ -21,15 +20,16 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            people:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    person:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Person'
+            people: {$ref: '#/components/schemas/People'}
+    People:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            person:
+              type: array
+              items:
+                $ref: '#/components/schemas/Person'
     PersonResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
@@ -44,12 +44,13 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            person:
-              type: object
-              properties:
-                id: {type: string}
-                family_id: {type: integer}
-    PeopleAdditionalQueryFields:
+            person: {$ref: '#/components/schemas/PersonModified'}
+    PersonModified:
+      type: object
+      properties:
+        id: {type: string}
+        family_id: {type: integer}
+    PersonAdditionalFields:
       type: string
       enum: [gender, birthday, anniversary, school_grade, marital_status, development_child, special_needs_child, security_code, receipt_name, giving_number, mailing_address, mailing_address2, mailing_city, mailing_state, mailing_postcode, mailing_country, home_address, home_address2, home_city, home_state, home_postcode, home_country, access_permissions, departments, service_types, demographics, locations, family, reports_to]
     MaritalStatus:

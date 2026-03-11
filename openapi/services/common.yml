@@ -9,6 +9,17 @@ components:
         name: {type: string}
         starts: {type: string, format: date-time}
         ends: {type: string, format: date-time}
+    ServiceArrangement:
+      type: object
+      properties:
+        id: {type: string}
+        title: {type: string}
+        bpm: {type: string}
+        duration: {type: string}
+        sequence: {type: array, items: {type: string}}
+        key_id: {type: string}
+        key_name: {type: string}
+        key: {type: string}
     ServiceSong:
       type: object
       properties:
@@ -17,19 +28,11 @@ components:
         title: {type: string}
         artist: {type: string}
         album: {type: string}
-        arrangement:
-          type: object
-          properties:
-            id: {type: string}
-            title: {type: string}
-            bpm: {type: string}
-            duration: {type: string}
-            sequence:
-              type: array
-              items: {type: string}
-            key_id: {type: string}
-            key_name: {type: string}
-            key: {type: string}
+        arrangement: {$ref: '#/components/schemas/ServiceArrangement'}
+    ServicePlanItems:
+      type: object
+      properties:
+        item: {type: array, items: {$ref: '#/components/schemas/ServicePlanItem'}}
     ServicePlan:
       type: object
       properties:
@@ -38,22 +41,95 @@ components:
         service_length_formatted: {type: string}
         total_length: {type: integer}
         total_length_formatted: {type: string}
-        items:
-          type: object
-          properties:
-            item:
-              type: array
-              items: {$ref: '#/components/schemas/ServicePlanItem'}                
+        items: {$ref: '#/components/schemas/ServicePlanItems'}
     ServicePlanItem:
       type: object
       properties:
         id: {type: string}
         heading: {$ref: '#/components/schemas/BooleanIntEnum'}
-        when: {type: string, enum: [before, during, after]}
+        when: {$ref: '#/components/schemas/ServiceWhen'}
         duration: {type: string}
         title: {type: string}
         song: {$ref: '#/components/schemas/ServiceSong'}
         description: {type: string}
+    ServiceWhen:
+      type: string
+      enum: [before, during, after]
+    ServiceTimes:
+      type: object
+      properties:
+        service_time: {type: array, items: {$ref: '#/components/schemas/Time'}}
+    RehearsalTimes:
+      type: object
+      properties:
+        rehearsal_time: {type: array, items: {$ref: '#/components/schemas/Time'}}
+    OtherTimes:
+      type: object
+      properties:
+        other_time: {type: array, items: {$ref: '#/components/schemas/Time'}}
+    ServicePlans:
+      type: object
+      properties:
+        plan: {type: array, items: {$ref: '#/components/schemas/ServicePlan'}}
+    ServiceVolunteers:
+      type: object
+      properties:
+        plan: {type: array, items: {$ref: '#/components/schemas/VolunteerPlan'}}
+    VolunteerPlan:
+      type: object
+      properties:
+        time_id: {type: string}
+        positions: {$ref: '#/components/schemas/VolunteerPositions'}
+    VolunteerPositions:
+      type: object
+      properties:
+        position: {type: array, items: {$ref: '#/components/schemas/VolunteerPosition'}}
+    VolunteerPosition:
+      type: object
+      properties:
+        department_id: {type: string}
+        department_name: {type: string}
+        sub_department_id: {type: string}
+        sub_department_name: {type: string}
+        position_id: {type: string}
+        position_name: {type: string}
+        volunteers: {$ref: '#/components/schemas/Volunteers'}
+    Volunteers:
+      type: object
+      properties:
+        volunteer: {type: array, items: {$ref: '#/components/schemas/Volunteer'}}
+    Volunteer:
+      type: object
+      properties:
+        person: {$ref: '#/components/schemas/VolunteerPerson'}
+        status: {$ref: '#/components/schemas/VolunteerStatus'}
+    VolunteerPerson:
+      type: object
+      properties:
+        id: {type: string}
+        firstname: {type: string}
+        preferred_name: {type: string}
+        middle_name: {type: string}
+        lastname: {type: string}
+    VolunteerStatus:
+      type: string
+      enum: [Confirmed, Declined, Unconfirmed]
+    ServiceSongs:
+      type: object
+      properties:
+        song: {type: array, items: {$ref: '#/components/schemas/ServiceSong'}}
+    ServiceFiles:
+      type: object
+      properties:
+        file: {type: array, items: {$ref: '#/components/schemas/ServiceFile'}}
+    ServiceFile:
+      type: object
+      properties:
+        id: {type: string}
+        title: {type: string}
+        type: {$ref: '#/components/schemas/FileType'}
+        html: {$ref: '#/components/schemas/BooleanIntEnum'}
+        content: {type: string}
     Service:
       type: object
       properties:
@@ -68,97 +144,14 @@ components:
         picture: {type: string}
         service_type: {$ref: '#/components/schemas/IdName'}
         location: {$ref: '#/components/schemas/IdName'}
-        service_times: 
-          type: object
-          properties:
-            service_time:
-              type: array
-              items: {$ref: '#/components/schemas/Time'}
-        rehearsal_times:
-          type: object
-          properties:
-            rehearsal_time:
-              type: array
-              items: {$ref: '#/components/schemas/Time'}
-        other_times:
-          type: object
-          properties:
-            other_time:
-              type: array
-              items: {$ref: '#/components/schemas/Time'}
-        plans:
-          type: object
-          properties:
-            plan:
-              type: array
-              items: {$ref: '#/components/schemas/ServicePlan'}
-        volunteers:
-          type: object
-          properties:
-            plan:
-              type: array
-              items:
-                type: object
-                properties:
-                  time_id: {type: string}
-                  positions: 
-                    type: object
-                    properties:
-                      position:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            department_id: {type: string}
-                            department_name: {type: string}
-                            sub_department_id: {type: string}
-                            sub_department_name: {type: string}
-                            position_id: {type: string}
-                            position_name: {type: string}
-                            volunteers:
-                              type: object
-                              properties:
-                                volunteer:
-                                  type: array
-                                  items:
-                                    type: object
-                                    properties:
-                                      person:
-                                        type: object
-                                        properties:
-                                          id: {type: string}
-                                          firstname: {type: string}
-                                          preferred_name: {type: string}
-                                          middle_name: {type: string}
-                                          lastname: {type: string}
-                                      status: {type: string, enum: [Confirmed, Declined, Unconfirmed]}
-        songs:
-          type: object
-          properties:
-            song:
-              type: array
-              items: {$ref: '#/components/schemas/ServiceSong'}
-        files:
-          type: object
-          properties:
-            file:
-              type: array
-              items:
-                type: object
-                properties:
-                  id: {type: string}
-                  title: {type: string}
-                  type: {type: string, enum: [file, image, audio, video, chart, lyrics]}
-                  html: {$ref: '#/components/schemas/BooleanIntEnum'}
-                  content: {type: string}
-        notes:
-          type: object
-          properties:
-            note:
-              type: array
-              items:
-                id: {type: string}
-                date_added: {type: string, format: date-time}
-                date_modified: {type: string, format: date-time}
-                note: {type: string}
-
+        service_times: {$ref: '#/components/schemas/ServiceTimes'}
+        rehearsal_times: {$ref: '#/components/schemas/RehearsalTimes'}
+        other_times: {$ref: '#/components/schemas/OtherTimes'}
+        plans: {$ref: '#/components/schemas/ServicePlans'}
+        volunteers: {$ref: '#/components/schemas/ServiceVolunteers'}
+        songs: {$ref: '#/components/schemas/ServiceSongs'}
+        files: {$ref: '#/components/schemas/ServiceFiles'}
+        notes: {$ref: '#/components/schemas/Notes'}
+    ServiceAdditionalFields:
+      type: string
+      enum: [series_name, service_times, rehearsal_times, other_times, plans, volunteers, songs, files, notes, picture]

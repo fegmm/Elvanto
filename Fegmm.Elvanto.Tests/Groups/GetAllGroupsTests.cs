@@ -1,4 +1,5 @@
 using Fegmm.Elvanto.Groups.GetAllJson;
+using Fegmm.Elvanto.Models;
 using Fegmm.Elvanto.Tests.Utils;
 
 namespace Fegmm.Elvanto.Tests.Groups;
@@ -10,7 +11,7 @@ public class GetAllGroupsTests : BaseTest
     {
         GetAllPostRequestBody body = new()
         {
-            Fields = [.. Enum.GetValues<GetAllPostRequestBody_fields>()]
+            Fields = [.. Enum.GetValues<GroupAdditionalFields>()]
         };
         var response = await client.Groups.GetAllJson.PostAsync(body, null, TestContext.Current.CancellationToken);
 

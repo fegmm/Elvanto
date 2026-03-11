@@ -21,10 +21,10 @@ namespace Fegmm.Elvanto.Services.GetAllJson
         /// <summary>The fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Services.GetAllJson.GetAllPostRequestBody_fields?>? Fields { get; set; }
+        public List<global::Fegmm.Elvanto.Models.ServiceAdditionalFields?>? Fields { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Services.GetAllJson.GetAllPostRequestBody_fields?> Fields { get; set; }
+        public List<global::Fegmm.Elvanto.Models.ServiceAdditionalFields?> Fields { get; set; }
 #endif
         /// <summary>The service_types property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,7 +58,7 @@ namespace Fegmm.Elvanto.Services.GetAllJson
             {
                 { "all", n => { All = n.GetEnumValue<global::Fegmm.Elvanto.Models.BooleanStringEnum>(); } },
                 { "end", n => { End = n.GetDateValue(); } },
-                { "fields", n => { Fields = n.GetCollectionOfEnumValues<global::Fegmm.Elvanto.Services.GetAllJson.GetAllPostRequestBody_fields>()?.AsList(); } },
+                { "fields", n => { Fields = n.GetCollectionOfEnumValues<global::Fegmm.Elvanto.Models.ServiceAdditionalFields>()?.AsList(); } },
                 { "service_types", n => { ServiceTypes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "start", n => { Start = n.GetDateValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Fegmm.Elvanto.Services.GetAllJson.GetAllPostRequestBody_status>(); } },
@@ -74,7 +74,7 @@ namespace Fegmm.Elvanto.Services.GetAllJson
             base.Serialize(writer);
             writer.WriteEnumValue<global::Fegmm.Elvanto.Models.BooleanStringEnum>("all", All);
             writer.WriteDateValue("end", End);
-            writer.WriteCollectionOfEnumValues<global::Fegmm.Elvanto.Services.GetAllJson.GetAllPostRequestBody_fields>("fields", Fields);
+            writer.WriteCollectionOfEnumValues<global::Fegmm.Elvanto.Models.ServiceAdditionalFields>("fields", Fields);
             writer.WriteCollectionOfPrimitiveValues<string>("service_types", ServiceTypes);
             writer.WriteDateValue("start", Start);
             writer.WriteEnumValue<global::Fegmm.Elvanto.Services.GetAllJson.GetAllPostRequestBody_status>("status", Status);

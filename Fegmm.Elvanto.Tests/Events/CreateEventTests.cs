@@ -12,7 +12,7 @@ public class CreateEventTests : BaseTest
         var request = new CreatePostRequestBody
         {
             Name = $"API Test - {TestContext.Current.Test!.TestDisplayName}",
-            Status = CreatePostRequestBody_status.Draft,
+            Status = EventStatus.Draft,
             Start = DateTimeOffset.UtcNow.AddDays(1),
             End = DateTimeOffset.UtcNow.AddDays(1).AddHours(1),
             Description = "Test event description",

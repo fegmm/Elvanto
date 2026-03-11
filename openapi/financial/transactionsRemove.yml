@@ -32,7 +32,4 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            transaction:
-              type: object
-              properties:
-                id: {type: string}
+            transaction: {$ref: '#/components/schemas/IdObject'}

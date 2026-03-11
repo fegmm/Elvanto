@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The people_flow_step_members property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.FlowsPeopleQueryResponse_people_flow_step_members? PeopleFlowStepMembers { get; set; }
+        public global::Fegmm.Elvanto.Models.FlowStepMembers? PeopleFlowStepMembers { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.FlowsPeopleQueryResponse_people_flow_step_members PeopleFlowStepMembers { get; set; }
+        public global::Fegmm.Elvanto.Models.FlowStepMembers PeopleFlowStepMembers { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "people_flow_step_members", n => { PeopleFlowStepMembers = n.GetObjectValue<global::Fegmm.Elvanto.Models.FlowsPeopleQueryResponse_people_flow_step_members>(global::Fegmm.Elvanto.Models.FlowsPeopleQueryResponse_people_flow_step_members.CreateFromDiscriminatorValue); } },
+                { "people_flow_step_members", n => { PeopleFlowStepMembers = n.GetObjectValue<global::Fegmm.Elvanto.Models.FlowStepMembers>(global::Fegmm.Elvanto.Models.FlowStepMembers.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.FlowsPeopleQueryResponse_people_flow_step_members>("people_flow_step_members", PeopleFlowStepMembers);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.FlowStepMembers>("people_flow_step_members", PeopleFlowStepMembers);
         }
     }
 }

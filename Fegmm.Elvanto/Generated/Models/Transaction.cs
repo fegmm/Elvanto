@@ -18,18 +18,18 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The amounts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.Transaction_amounts>? Amounts { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionAmounts? Amounts { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.Transaction_amounts> Amounts { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionAmounts Amounts { get; set; }
 #endif
         /// <summary>The batch property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Transaction_batch? Batch { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionBatch? Batch { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Transaction_batch Batch { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionBatch Batch { get; set; }
 #endif
         /// <summary>The check_number property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -170,8 +170,8 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "amounts", n => { Amounts = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Transaction_amounts>(global::Fegmm.Elvanto.Models.Transaction_amounts.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "batch", n => { Batch = n.GetObjectValue<global::Fegmm.Elvanto.Models.Transaction_batch>(global::Fegmm.Elvanto.Models.Transaction_batch.CreateFromDiscriminatorValue); } },
+                { "amounts", n => { Amounts = n.GetObjectValue<global::Fegmm.Elvanto.Models.TransactionAmounts>(global::Fegmm.Elvanto.Models.TransactionAmounts.CreateFromDiscriminatorValue); } },
+                { "batch", n => { Batch = n.GetObjectValue<global::Fegmm.Elvanto.Models.TransactionBatch>(global::Fegmm.Elvanto.Models.TransactionBatch.CreateFromDiscriminatorValue); } },
                 { "check_number", n => { CheckNumber = n.GetStringValue(); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "created_by_first_name", n => { CreatedByFirstName = n.GetStringValue(); } },
@@ -199,8 +199,8 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Transaction_amounts>("amounts", Amounts);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Transaction_batch>("batch", Batch);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.TransactionAmounts>("amounts", Amounts);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.TransactionBatch>("batch", Batch);
             writer.WriteStringValue("check_number", CheckNumber);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
             writer.WriteStringValue("created_by_first_name", CreatedByFirstName);

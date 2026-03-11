@@ -16,9 +16,7 @@ paths:
                     suspended: {$ref: '#/components/schemas/FilterEnum'}
                     fields:
                       type: array
-                      items:
-                        type: string
-                        enum: [people, categories, departments, demographics, locations]
+                      items: {$ref: '#/components/schemas/GroupAdditionalFields'}
       responses:
         '200':
           description: 'Success'

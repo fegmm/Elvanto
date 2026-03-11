@@ -36,7 +36,4 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            key:
-              type: object
-              properties:
-                id: {type: string}
+            key: {$ref: '#/components/schemas/IdObject'}

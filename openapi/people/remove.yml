@@ -32,4 +32,4 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            id: {type: string}
+            person: {$ref: '#/components/schemas/IdObject'}

@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The songs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.SongsQueryResponse_songs? Songs { get; set; }
+        public global::Fegmm.Elvanto.Models.Songs? Songs { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.SongsQueryResponse_songs Songs { get; set; }
+        public global::Fegmm.Elvanto.Models.Songs Songs { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "songs", n => { Songs = n.GetObjectValue<global::Fegmm.Elvanto.Models.SongsQueryResponse_songs>(global::Fegmm.Elvanto.Models.SongsQueryResponse_songs.CreateFromDiscriminatorValue); } },
+                { "songs", n => { Songs = n.GetObjectValue<global::Fegmm.Elvanto.Models.Songs>(global::Fegmm.Elvanto.Models.Songs.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.SongsQueryResponse_songs>("songs", Songs);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Songs>("songs", Songs);
         }
     }
 }

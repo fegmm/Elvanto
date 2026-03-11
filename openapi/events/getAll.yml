@@ -17,9 +17,8 @@ paths:
                     calendar: {type: array, items: {type: string}}
                     fields:
                       type: array
-                      items:
-                        type: string
-                        enum: [locations, assets, register_url]
+                      items: {$ref: '#/components/schemas/EventAdditionalFields'}
+                        
       responses:
         '200':
           description: 'Success'
@@ -36,19 +35,29 @@ paths:
                     fail: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    EventAdditionalFields:
+      type: string
+      enum: [locations, assets, register_url]
     EventQueryResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            events:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    event:
-                      type: array
-                      items: {$ref: '#/components/schemas/Event'}
+            events: {$ref: '#/components/schemas/Events'}
+    Events:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            event:
+              type: array
+              items: {$ref: '#/components/schemas/Event'}
+    EventAssets:
+      type: object
+      properties:
+        asset:
+          type: array
+          items: {$ref: '#/components/schemas/IdName'}
     Event:
       type: object
       properties:
@@ -66,10 +75,5 @@ components:
         url: {type: string}
         color: {type: string}
         locations: {$ref: '#/components/schemas/Locations'}
-        assets: 
-          type: object
-          properties:
-            asset:
-              type: array
-              items: {$ref: '#/components/schemas/IdName'}
+        assets: {$ref: '#/components/schemas/EventAssets'}
         register_url: {type: string}

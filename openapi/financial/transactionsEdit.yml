@@ -11,13 +11,13 @@ paths:
               type: object
               properties:
                 id: {type: string}
-                batch: {type: object}
-                person: {type: object}
+                batch: {$ref: '#/components/schemas/TransactionBatch'}
+                person: {$ref: '#/components/schemas/TransactionModifyPerson'}
                 transaction_date: {type: string, format: date}
                 transaction_method: {type: string}
                 check_number: {type: string}
-                amounts_add: {type: array, items: {type: object}}
-                amounts_edit: {type: array, items: {type: object}}
+                amounts_add: {type: array, items: {$ref: '#/components/schemas/TransactionCreateAmount'}}
+                amounts_edit: {type: array, items: {$ref: '#/components/schemas/TransactionModifyAmount'}}
                 amounts_remove: {type: array, items: {type: string}}
       responses:
         '200':
@@ -33,26 +33,3 @@ paths:
                   mapping:
                     ok: '#/components/schemas/UpsertTransactionResponse'
                     fail: '#/components/schemas/ErrorResponse'
-components:
-  schemas:
-    UpsertTransactionResponse:
-      allOf:
-        - $ref: '#/components/schemas/Response'
-        - type: object
-          properties:
-            transaction:
-              type: object
-              properties:
-                id: {type: string}
-                batch:
-                  type: object
-                  properties:
-                    id: {type: string}
-                    number: {type: integer}
-                    name: {type: string}
-                person:
-                  type: object
-                  properties:
-                    id: {type: string}
-                    firstname: {type: string}
-                    lastname: {type: string}

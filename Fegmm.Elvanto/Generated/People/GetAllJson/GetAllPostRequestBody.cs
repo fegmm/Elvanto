@@ -28,10 +28,10 @@ namespace Fegmm.Elvanto.People.GetAllJson
         /// <summary>The fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.PeopleAdditionalQueryFields?>? Fields { get; set; }
+        public List<string>? Fields { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.PeopleAdditionalQueryFields?> Fields { get; set; }
+        public List<string> Fields { get; set; }
 #endif
         /// <summary>The suspended property</summary>
         public global::Fegmm.Elvanto.Models.FilterEnum? Suspended { get; set; }
@@ -65,7 +65,7 @@ namespace Fegmm.Elvanto.People.GetAllJson
                 { "archived", n => { Archived = n.GetEnumValue<global::Fegmm.Elvanto.Models.FilterEnum>(); } },
                 { "category_id", n => { CategoryId = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "contact", n => { Contact = n.GetEnumValue<global::Fegmm.Elvanto.Models.FilterEnum>(); } },
-                { "fields", n => { Fields = n.GetCollectionOfEnumValues<global::Fegmm.Elvanto.Models.PeopleAdditionalQueryFields>()?.AsList(); } },
+                { "fields", n => { Fields = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "suspended", n => { Suspended = n.GetEnumValue<global::Fegmm.Elvanto.Models.FilterEnum>(); } },
             };
         }
@@ -80,7 +80,7 @@ namespace Fegmm.Elvanto.People.GetAllJson
             writer.WriteEnumValue<global::Fegmm.Elvanto.Models.FilterEnum>("archived", Archived);
             writer.WriteCollectionOfPrimitiveValues<string>("category_id", CategoryId);
             writer.WriteEnumValue<global::Fegmm.Elvanto.Models.FilterEnum>("contact", Contact);
-            writer.WriteCollectionOfEnumValues<global::Fegmm.Elvanto.Models.PeopleAdditionalQueryFields>("fields", Fields);
+            writer.WriteCollectionOfPrimitiveValues<string>("fields", Fields);
             writer.WriteEnumValue<global::Fegmm.Elvanto.Models.FilterEnum>("suspended", Suspended);
         }
     }

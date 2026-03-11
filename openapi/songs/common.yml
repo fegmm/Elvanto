@@ -29,6 +29,10 @@ components:
         key_starting: {type: string}
         key_ending: {type: string}
         arrangement_id: {type: string}
+    SongCategories:
+      type: object
+      properties:
+        category: {type: array, items: {$ref: '#/components/schemas/IdName'}}
     Song:
       type: object
       properties:
@@ -45,11 +49,6 @@ components:
         artist: {type: string}
         album: {type: string}
         notes: {$ref: '#/components/schemas/Notes'}
-        categories:
-          type: object
-          properties:
-            category:
-              type: array
-              items: {$ref: '#/components/schemas/IdName'}
+        categories: {$ref: '#/components/schemas/SongCategories'}
         locations: {$ref: '#/components/schemas/Locations'}
         files: {$ref: '#/components/schemas/Files'}

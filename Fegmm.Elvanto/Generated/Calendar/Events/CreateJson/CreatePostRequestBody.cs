@@ -118,7 +118,7 @@ namespace Fegmm.Elvanto.Calendar.Events.CreateJson
         /// <summary>The start property</summary>
         public DateTimeOffset? Start { get; set; }
         /// <summary>The status property</summary>
-        public global::Fegmm.Elvanto.Calendar.Events.CreateJson.CreatePostRequestBody_status? Status { get; set; }
+        public global::Fegmm.Elvanto.Models.EventStatus? Status { get; set; }
         /// <summary>The where property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -178,7 +178,7 @@ namespace Fegmm.Elvanto.Calendar.Events.CreateJson
                 { "repeat_on", n => { RepeatOn = n.GetStringValue(); } },
                 { "show_guest_list", n => { ShowGuestList = n.GetEnumValue<global::Fegmm.Elvanto.Models.BooleanStringEnum>(); } },
                 { "start", n => { Start = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Fegmm.Elvanto.Calendar.Events.CreateJson.CreatePostRequestBody_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Fegmm.Elvanto.Models.EventStatus>(); } },
                 { "where", n => { Where = n.GetStringValue(); } },
                 { "who_can_attend", n => { WhoCanAttend = n.GetStringValue(); } },
             };
@@ -208,7 +208,7 @@ namespace Fegmm.Elvanto.Calendar.Events.CreateJson
             writer.WriteStringValue("repeat_on", RepeatOn);
             writer.WriteEnumValue<global::Fegmm.Elvanto.Models.BooleanStringEnum>("show_guest_list", ShowGuestList);
             writer.WriteDateTimeOffsetValue("start", Start);
-            writer.WriteEnumValue<global::Fegmm.Elvanto.Calendar.Events.CreateJson.CreatePostRequestBody_status>("status", Status);
+            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.EventStatus>("status", Status);
             writer.WriteStringValue("where", Where);
             writer.WriteStringValue("who_can_attend", WhoCanAttend);
             writer.WriteAdditionalData(AdditionalData);

@@ -1,3 +1,4 @@
+using Fegmm.Elvanto.Models;
 using Fegmm.Elvanto.Services.GetInfoJson;
 using Fegmm.Elvanto.Tests.Utils;
 
@@ -20,7 +21,7 @@ public class GetServiceInfoTests : BaseTest
         GetInfoPostRequestBody body = new()
         {
             Id = service.Id,
-            Fields = [.. Enum.GetValues<GetInfoPostRequestBody_fields>()]
+            Fields = [.. Enum.GetValues<ServiceAdditionalFields>()]
         };
 
         var response = await client.Services.GetInfoJson.PostAsync(body, null, TestContext.Current.CancellationToken);

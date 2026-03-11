@@ -35,10 +35,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The categories property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Song_categories? Categories { get; set; }
+        public global::Fegmm.Elvanto.Models.SongCategories? Categories { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Song_categories Categories { get; set; }
+        public global::Fegmm.Elvanto.Models.SongCategories Categories { get; set; }
 #endif
         /// <summary>The date_added property</summary>
         public DateTimeOffset? DateAdded { get; set; }
@@ -134,7 +134,7 @@ namespace Fegmm.Elvanto.Models
                 { "album", n => { Album = n.GetStringValue(); } },
                 { "allow_downloads", n => { AllowDownloads = n.GetIntValue(); } },
                 { "artist", n => { Artist = n.GetStringValue(); } },
-                { "categories", n => { Categories = n.GetObjectValue<global::Fegmm.Elvanto.Models.Song_categories>(global::Fegmm.Elvanto.Models.Song_categories.CreateFromDiscriminatorValue); } },
+                { "categories", n => { Categories = n.GetObjectValue<global::Fegmm.Elvanto.Models.SongCategories>(global::Fegmm.Elvanto.Models.SongCategories.CreateFromDiscriminatorValue); } },
                 { "date_added", n => { DateAdded = n.GetDateTimeOffsetValue(); } },
                 { "date_modified", n => { DateModified = n.GetDateTimeOffsetValue(); } },
                 { "files", n => { Files = n.GetObjectValue<global::Fegmm.Elvanto.Models.Files>(global::Fegmm.Elvanto.Models.Files.CreateFromDiscriminatorValue); } },
@@ -159,7 +159,7 @@ namespace Fegmm.Elvanto.Models
             writer.WriteStringValue("album", Album);
             writer.WriteIntValue("allow_downloads", AllowDownloads);
             writer.WriteStringValue("artist", Artist);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Song_categories>("categories", Categories);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.SongCategories>("categories", Categories);
             writer.WriteDateTimeOffsetValue("date_added", DateAdded);
             writer.WriteDateTimeOffsetValue("date_modified", DateModified);
             writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Files>("files", Files);

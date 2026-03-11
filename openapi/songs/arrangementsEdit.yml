@@ -43,5 +43,8 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            arrangements:
-              id: {type: string}
+            arrangements: {$ref: '#/components/schemas/ArrangementEdited'}
+    ArrangementEdited:
+      type: object
+      properties:
+        id: {type: string}

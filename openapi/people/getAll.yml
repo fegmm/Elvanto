@@ -20,7 +20,10 @@ paths:
                     fields:
                       type: array
                       items:
-                        $ref: '#/components/schemas/PeopleAdditionalQueryFields'
+                        oneOf:
+                        - $ref: '#/components/schemas/PersonAdditionalFields'
+                        - type: string
+                          pattern: ^custom_.*$
       responses:
         '200':
           description: 'Success'

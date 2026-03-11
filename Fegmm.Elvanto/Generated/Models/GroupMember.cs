@@ -79,13 +79,7 @@ namespace Fegmm.Elvanto.Models
         public string Picture { get; set; }
 #endif
         /// <summary>The position property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Position { get; set; }
-#nullable restore
-#else
-        public string Position { get; set; }
-#endif
+        public global::Fegmm.Elvanto.Models.GroupMemberPositions? Position { get; set; }
         /// <summary>The preferred_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -127,7 +121,7 @@ namespace Fegmm.Elvanto.Models
                 { "mobile", n => { Mobile = n.GetStringValue(); } },
                 { "phone", n => { Phone = n.GetStringValue(); } },
                 { "picture", n => { Picture = n.GetStringValue(); } },
-                { "position", n => { Position = n.GetStringValue(); } },
+                { "position", n => { Position = n.GetEnumValue<global::Fegmm.Elvanto.Models.GroupMemberPositions>(); } },
                 { "preferred_name", n => { PreferredName = n.GetStringValue(); } },
             };
         }
@@ -146,7 +140,7 @@ namespace Fegmm.Elvanto.Models
             writer.WriteStringValue("mobile", Mobile);
             writer.WriteStringValue("phone", Phone);
             writer.WriteStringValue("picture", Picture);
-            writer.WriteStringValue("position", Position);
+            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.GroupMemberPositions>("position", Position);
             writer.WriteStringValue("preferred_name", PreferredName);
             writer.WriteAdditionalData(AdditionalData);
         }

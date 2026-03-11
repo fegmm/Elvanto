@@ -11,8 +11,8 @@ paths:
               type: object
               properties:
                 name: {type: string}
-                status: {type: integer, default: 1}
-                tax_deductible: {type: string, enum: ["y", "n"], default: "n"}
+                status: {allOf: [{$ref: '#/components/schemas/BooleanIntEnum'}, {default: 1}]}
+                tax_deductible: {allOf: [{$ref: '#/components/schemas/BooleanCharEnum'}, {default: "n"}]}
       responses:
         '200':
           description: 'Success'
@@ -34,10 +34,11 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            category:
-              type: object
-              properties:
-                id: {type: string}
-                status: {$ref: '#/components/schemas/BooleanIntEnum'}
-                name: {type: string}
-                tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}
+            category: {$ref: '#/components/schemas/CreatedTransactionCategory'}
+    CreatedTransactionCategory:
+      type: object
+      properties:
+        id: {type: string}
+        status: {$ref: '#/components/schemas/BooleanIntEnum'}
+        name: {type: string}
+        tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}

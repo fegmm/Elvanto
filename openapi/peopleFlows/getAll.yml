@@ -25,14 +25,15 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            people_flows:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    people_flow:
-                      type: array
-                      items: {$ref: '#/components/schemas/Flow'}
+            people_flows: {$ref: '#/components/schemas/Flows'}
+    Flows:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            people_flow:
+              type: array
+              items: {$ref: '#/components/schemas/Flow'}
     Flow:
       type: object
       properties:
@@ -41,15 +42,16 @@ components:
         access: {type: string}
         steps:
           type: array
-          items:
-            type: object
-            properties:
-              name: {type: string}
-              status: {type: string}
-              entry_point: {type: string}
-              steps: {type: array, items: {type: string}}
-              admins: {type: array, items: {type: string}}
+          items: {$ref: '#/components/schemas/FlowStepSummary'}
         admins: {type: array, items: {type: string}}
         locations: {$ref: '#/components/schemas/Locations'}
         demographics: {$ref: '#/components/schemas/Demographics'}
         id: {type: string}
+    FlowStepSummary:
+      type: object
+      properties:
+        name: {type: string}
+        status: {type: string}
+        entry_point: {type: string}
+        steps: {type: array, items: {type: string}}
+        admins: {type: array, items: {type: string}}

@@ -1,3 +1,4 @@
+using Fegmm.Elvanto.Models;
 using Fegmm.Elvanto.Services.GetAllJson;
 using Fegmm.Elvanto.Tests.Utils;
 
@@ -10,7 +11,7 @@ public class GetAllServicesTests : BaseTest
     {
         GetAllPostRequestBody body = new()
         {
-            Fields = [.. Enum.GetValues<GetAllPostRequestBody_fields>()]
+            Fields = [.. Enum.GetValues<ServiceAdditionalFields>()]
         };
         var response = await client.Services.GetAllJson.PostAsync(body, null,
             TestContext.Current.CancellationToken);

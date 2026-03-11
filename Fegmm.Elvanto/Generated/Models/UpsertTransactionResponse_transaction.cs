@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The batch property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_batch? Batch { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionBatch? Batch { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_batch Batch { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionBatch Batch { get; set; }
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,10 +33,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The person property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_person? Person { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionPerson? Person { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_person Person { get; set; }
+        public global::Fegmm.Elvanto.Models.TransactionPerson Person { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction"/> and sets the default values.
@@ -63,9 +63,9 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "batch", n => { Batch = n.GetObjectValue<global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_batch>(global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_batch.CreateFromDiscriminatorValue); } },
+                { "batch", n => { Batch = n.GetObjectValue<global::Fegmm.Elvanto.Models.TransactionBatch>(global::Fegmm.Elvanto.Models.TransactionBatch.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "person", n => { Person = n.GetObjectValue<global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_person>(global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_person.CreateFromDiscriminatorValue); } },
+                { "person", n => { Person = n.GetObjectValue<global::Fegmm.Elvanto.Models.TransactionPerson>(global::Fegmm.Elvanto.Models.TransactionPerson.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -75,9 +75,9 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_batch>("batch", Batch);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.TransactionBatch>("batch", Batch);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.UpsertTransactionResponse_transaction_person>("person", Person);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.TransactionPerson>("person", Person);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -9,3 +9,4 @@ components:
               type: object
               properties:
                 id: {type: string}
+    EventStatus: {type: string, enum: [public, private, draft]}

@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The department property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.Departments_department>? Department { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Department>? Department { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.Departments_department> Department { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Department> Department { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Departments"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "department", n => { Department = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Departments_department>(global::Fegmm.Elvanto.Models.Departments_department.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "department", n => { Department = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Department>(global::Fegmm.Elvanto.Models.Department.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Departments_department>("department", Department);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Department>("department", Department);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

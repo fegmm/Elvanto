@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The song property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.CreateSongResponse_song? Song { get; set; }
+        public global::Fegmm.Elvanto.Models.SongCreated? Song { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.CreateSongResponse_song Song { get; set; }
+        public global::Fegmm.Elvanto.Models.SongCreated Song { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "song", n => { Song = n.GetObjectValue<global::Fegmm.Elvanto.Models.CreateSongResponse_song>(global::Fegmm.Elvanto.Models.CreateSongResponse_song.CreateFromDiscriminatorValue); } },
+                { "song", n => { Song = n.GetObjectValue<global::Fegmm.Elvanto.Models.SongCreated>(global::Fegmm.Elvanto.Models.SongCreated.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.CreateSongResponse_song>("song", Song);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.SongCreated>("song", Song);
         }
     }
 }

@@ -1,55 +1,65 @@
 components:
   schemas:
+    GroupPersonModified:
+      type: object
+      properties:
+        id: {type: string}
+        person_id: {type: string}
     GroupPersonModifiedResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            group:
-              type: object
-              properties:
-                id: {type: string}
-                person_id: {type: string}
+            group: {$ref: '#/components/schemas/GroupPersonModified'}
     GroupModifiedResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            group:
-              type: object
-              properties:
-                id: {type: string}
+            group: {$ref: '#/components/schemas/IdObject'}
     GroupQueryResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            groups: 
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    group:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Group'
+            groups: {$ref: '#/components/schemas/Groups'}
+    Groups:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            group:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
     GroupState: {type: string, enum: [active, suspended], description: The status of the group.}
+    GroupMeetingType:
+      type: string
+      enum: [weekly, monthly]
+    DayOfWeek:
+      type: string
+      enum: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    GroupMeetingOccurrences:
+      type: array
+      description: The occurrence of the day within the month (only required for monthly meetings)
+      items:
+        oneOf:
+          - type: integer
+            enum: [1,2,3,4,5]
+          - type: string
+            enum: [last]
     GroupMeetingFrequency:
       type: object
       description: How often the group meets.
       properties:
-        type: {type: string, enum: [weekly, monthly]}
+        type: {$ref: '#/components/schemas/GroupMeetingType'}
         count: {type: integer, description: The amount of weeks/months between meetings}
-        day: {type: string, enum: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday], description: The name of the day the group meets}
-        occurrence: 
-          type: array
-          description: The occurrence of the day within the month (only required for monthly meetings) }
-          items:
-              oneOf:
-                - type: integer
-                  enum: [1,2,3,4,5]
-                - type: string
-                  enum: [last]
+        day: {$ref: '#/components/schemas/DayOfWeek'}
+        occurrence: {$ref: '#/components/schemas/GroupMeetingOccurrences'}
+    GroupMembers:
+      type: object
+      properties:
+        person: {type: array, items: {$ref: '#/components/schemas/GroupMember'}}
     Group:
       type: object
       properties:
@@ -68,10 +78,7 @@ components:
         meeting_frequency: {type: string}
         picture: {type: string}
         id: {type: string}
-        people: 
-          type: object
-          properties:
-            person: {type: array, items: {$ref: '#/components/schemas/GroupMember'}}
+        people: {$ref: '#/components/schemas/GroupMembers'}
         categories: {$ref: '#/components/schemas/Categories'}
         departments: {$ref: '#/components/schemas/Departments'}
         demographics: {$ref: '#/components/schemas/Demographics'}
@@ -87,5 +94,10 @@ components:
         mobile: {type: string}
         phone: {type: string}
         picture: {type: string}
-        position: {type: string}
+        position: {$ref: '#/components/schemas/GroupMemberPositions'}
         id: {type: string}
+    GroupMemberPositions:
+      {type: string, enum: [Leader, Assistant Leader], default: null}
+    GroupAdditionalFields:
+      type: string
+      enum: [people, categories, departments, demographics, locations]

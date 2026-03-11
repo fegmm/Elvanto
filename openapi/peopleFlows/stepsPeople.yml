@@ -34,25 +34,27 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            people_flow_step_members:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    people_flow_step_member:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          member_firstname: {type: string}
-                          member_preferred_name: {type: string}
-                          member_middle_name: {type: string}
-                          member_lastname: {type: string}
-                          date_added: {type: string, format: date-time}
-                          assigned_admin_id: {type: string}
-                          status: {type: string}
-                          completed_date: {type: string, format: date-time}
-                          completed_member: {type: string}
-                          due_date: {type: string, format: date}
-                          flow_step_member_id: {type: string}
-                          id: {type: string}
+            people_flow_step_members: {$ref: '#/components/schemas/FlowStepMembers'}
+    FlowStepMembers:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            people_flow_step_member:
+              type: array
+              items: {$ref: '#/components/schemas/FlowStepMember'}
+    FlowStepMember:
+      type: object
+      properties:
+        member_firstname: {type: string}
+        member_preferred_name: {type: string}
+        member_middle_name: {type: string}
+        member_lastname: {type: string}
+        date_added: {type: string, format: date-time}
+        assigned_admin_id: {type: string}
+        status: {type: string}
+        completed_date: {type: string, format: date-time}
+        completed_member: {type: string}
+        due_date: {type: string, format: date}
+        flow_step_member_id: {type: string}
+        id: {type: string}

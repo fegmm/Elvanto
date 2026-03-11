@@ -1,4 +1,5 @@
 using Fegmm.Elvanto.Calendar.Events.GetAllJson;
+using Fegmm.Elvanto.Models;
 using Fegmm.Elvanto.Tests.Utils;
 
 namespace Fegmm.Elvanto.Tests.Events;
@@ -12,7 +13,7 @@ public class GetAllEventsTests : BaseTest
         {
             Start = DateOnly.FromDateTime(DateTime.UtcNow),
             End = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(30)),
-            Fields = [.. Enum.GetValues<GetAllPostRequestBody_fields>()]
+            Fields = [.. Enum.GetValues<EventAdditionalFields>()]
         };
         var response = await client.Calendar.Events.GetAllJson.PostAsync(body, null,
             TestContext.Current.CancellationToken);

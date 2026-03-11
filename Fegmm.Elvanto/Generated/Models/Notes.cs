@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The note property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Note { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Note>? Note { get; set; }
 #nullable restore
 #else
-        public UntypedNode Note { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Note> Note { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Notes"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "note", n => { Note = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "note", n => { Note = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Note>(global::Fegmm.Elvanto.Models.Note.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<UntypedNode>("note", Note);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Note>("note", Note);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

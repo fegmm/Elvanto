@@ -57,7 +57,7 @@ namespace Fegmm.Elvanto.Models
         public string Title { get; set; }
 #endif
         /// <summary>The when property</summary>
-        public global::Fegmm.Elvanto.Models.ServicePlanItem_when? When { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceWhen? When { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.ServicePlanItem"/> and sets the default values.
         /// </summary>
@@ -89,7 +89,7 @@ namespace Fegmm.Elvanto.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "song", n => { Song = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceSong>(global::Fegmm.Elvanto.Models.ServiceSong.CreateFromDiscriminatorValue); } },
                 { "title", n => { Title = n.GetStringValue(); } },
-                { "when", n => { When = n.GetEnumValue<global::Fegmm.Elvanto.Models.ServicePlanItem_when>(); } },
+                { "when", n => { When = n.GetEnumValue<global::Fegmm.Elvanto.Models.ServiceWhen>(); } },
             };
         }
         /// <summary>
@@ -105,7 +105,7 @@ namespace Fegmm.Elvanto.Models
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceSong>("song", Song);
             writer.WriteStringValue("title", Title);
-            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.ServicePlanItem_when>("when", When);
+            writer.WriteEnumValue<global::Fegmm.Elvanto.Models.ServiceWhen>("when", When);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

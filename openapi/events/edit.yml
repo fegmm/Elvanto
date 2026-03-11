@@ -13,7 +13,7 @@ paths:
                 id: {type: string}
                 name: {type: string}
                 calendar_id: {type: string}
-                status: {type: string, enum: [public, private, draft]}
+                status: {$ref: '#/components/schemas/EventStatus'}
                 start: {type: string, format: date-time}
                 end: {type: string, format: date-time}
                 all_day: {$ref: '#/components/schemas/BooleanStringEnum'}

@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The people_flow_steps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.FlowStepsQueryResponse_people_flow_steps? PeopleFlowSteps { get; set; }
+        public global::Fegmm.Elvanto.Models.FlowSteps? PeopleFlowSteps { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.FlowStepsQueryResponse_people_flow_steps PeopleFlowSteps { get; set; }
+        public global::Fegmm.Elvanto.Models.FlowSteps PeopleFlowSteps { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "people_flow_steps", n => { PeopleFlowSteps = n.GetObjectValue<global::Fegmm.Elvanto.Models.FlowStepsQueryResponse_people_flow_steps>(global::Fegmm.Elvanto.Models.FlowStepsQueryResponse_people_flow_steps.CreateFromDiscriminatorValue); } },
+                { "people_flow_steps", n => { PeopleFlowSteps = n.GetObjectValue<global::Fegmm.Elvanto.Models.FlowSteps>(global::Fegmm.Elvanto.Models.FlowSteps.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.FlowStepsQueryResponse_people_flow_steps>("people_flow_steps", PeopleFlowSteps);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.FlowSteps>("people_flow_steps", PeopleFlowSteps);
         }
     }
 }

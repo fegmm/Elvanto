@@ -31,16 +31,18 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            categories:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    category:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          id: {type: string}
-                          status: {$ref: '#/components/schemas/BooleanIntEnum'}
-                          name: {type: string}
+            categories: {$ref: '#/components/schemas/TransactionCategories'}
+    TransactionCategories:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            category:
+              type: array
+              items: {$ref: '#/components/schemas/TransactionCategory'}
+    TransactionCategory:
+      type: object
+      properties:
+        id: {type: string}
+        status: {$ref: '#/components/schemas/BooleanIntEnum'}
+        name: {type: string}

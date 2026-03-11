@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The items property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.ServicePlan_items? Items { get; set; }
+        public global::Fegmm.Elvanto.Models.ServicePlanItems? Items { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.ServicePlan_items Items { get; set; }
+        public global::Fegmm.Elvanto.Models.ServicePlanItems Items { get; set; }
 #endif
         /// <summary>The service_length property</summary>
         public int? ServiceLength { get; set; }
@@ -75,7 +75,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "items", n => { Items = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServicePlan_items>(global::Fegmm.Elvanto.Models.ServicePlan_items.CreateFromDiscriminatorValue); } },
+                { "items", n => { Items = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServicePlanItems>(global::Fegmm.Elvanto.Models.ServicePlanItems.CreateFromDiscriminatorValue); } },
                 { "service_length", n => { ServiceLength = n.GetIntValue(); } },
                 { "service_length_formatted", n => { ServiceLengthFormatted = n.GetStringValue(); } },
                 { "time_id", n => { TimeId = n.GetStringValue(); } },
@@ -90,7 +90,7 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServicePlan_items>("items", Items);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServicePlanItems>("items", Items);
             writer.WriteIntValue("service_length", ServiceLength);
             writer.WriteStringValue("service_length_formatted", ServiceLengthFormatted);
             writer.WriteStringValue("time_id", TimeId);

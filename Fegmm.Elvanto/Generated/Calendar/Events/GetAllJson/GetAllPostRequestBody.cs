@@ -27,10 +27,10 @@ namespace Fegmm.Elvanto.Calendar.Events.GetAllJson
         /// <summary>The fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Calendar.Events.GetAllJson.GetAllPostRequestBody_fields?>? Fields { get; set; }
+        public List<global::Fegmm.Elvanto.Models.EventAdditionalFields?>? Fields { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Calendar.Events.GetAllJson.GetAllPostRequestBody_fields?> Fields { get; set; }
+        public List<global::Fegmm.Elvanto.Models.EventAdditionalFields?> Fields { get; set; }
 #endif
         /// <summary>The start property</summary>
         public Date? Start { get; set; }
@@ -54,7 +54,7 @@ namespace Fegmm.Elvanto.Calendar.Events.GetAllJson
             {
                 { "calendar", n => { Calendar = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "end", n => { End = n.GetDateValue(); } },
-                { "fields", n => { Fields = n.GetCollectionOfEnumValues<global::Fegmm.Elvanto.Calendar.Events.GetAllJson.GetAllPostRequestBody_fields>()?.AsList(); } },
+                { "fields", n => { Fields = n.GetCollectionOfEnumValues<global::Fegmm.Elvanto.Models.EventAdditionalFields>()?.AsList(); } },
                 { "start", n => { Start = n.GetDateValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace Fegmm.Elvanto.Calendar.Events.GetAllJson
             base.Serialize(writer);
             writer.WriteCollectionOfPrimitiveValues<string>("calendar", Calendar);
             writer.WriteDateValue("end", End);
-            writer.WriteCollectionOfEnumValues<global::Fegmm.Elvanto.Calendar.Events.GetAllJson.GetAllPostRequestBody_fields>("fields", Fields);
+            writer.WriteCollectionOfEnumValues<global::Fegmm.Elvanto.Models.EventAdditionalFields>("fields", Fields);
             writer.WriteDateValue("start", Start);
         }
     }

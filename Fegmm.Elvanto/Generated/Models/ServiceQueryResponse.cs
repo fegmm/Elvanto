@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The services property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.ServiceQueryResponse_services? Services { get; set; }
+        public global::Fegmm.Elvanto.Models.Services? Services { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.ServiceQueryResponse_services Services { get; set; }
+        public global::Fegmm.Elvanto.Models.Services Services { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "services", n => { Services = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceQueryResponse_services>(global::Fegmm.Elvanto.Models.ServiceQueryResponse_services.CreateFromDiscriminatorValue); } },
+                { "services", n => { Services = n.GetObjectValue<global::Fegmm.Elvanto.Models.Services>(global::Fegmm.Elvanto.Models.Services.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceQueryResponse_services>("services", Services);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Services>("services", Services);
         }
     }
 }

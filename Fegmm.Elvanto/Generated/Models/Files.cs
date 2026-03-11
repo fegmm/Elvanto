@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The file property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.Files_file>? File { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FileObject>? File { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.Files_file> File { get; set; }
+        public List<global::Fegmm.Elvanto.Models.FileObject> File { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Files"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "file", n => { File = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Files_file>(global::Fegmm.Elvanto.Models.Files_file.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "file", n => { File = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FileObject>(global::Fegmm.Elvanto.Models.FileObject.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Files_file>("file", File);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.FileObject>("file", File);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

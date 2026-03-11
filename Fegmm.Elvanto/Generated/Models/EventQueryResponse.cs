@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The events property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.EventQueryResponse_events? Events { get; set; }
+        public global::Fegmm.Elvanto.Models.Events? Events { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.EventQueryResponse_events Events { get; set; }
+        public global::Fegmm.Elvanto.Models.Events Events { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "events", n => { Events = n.GetObjectValue<global::Fegmm.Elvanto.Models.EventQueryResponse_events>(global::Fegmm.Elvanto.Models.EventQueryResponse_events.CreateFromDiscriminatorValue); } },
+                { "events", n => { Events = n.GetObjectValue<global::Fegmm.Elvanto.Models.Events>(global::Fegmm.Elvanto.Models.Events.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.EventQueryResponse_events>("events", Events);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Events>("events", Events);
         }
     }
 }

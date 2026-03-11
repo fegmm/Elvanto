@@ -13,9 +13,7 @@ paths:
                 id: {type: string}
                 fields:
                   type: array
-                  items:
-                    type: string
-                    enum: [people, categories, departments, demographics, locations]
+                  items: {$ref: '#/components/schemas/GroupAdditionalFields'}
       responses:
         '200':
           description: 'Success'

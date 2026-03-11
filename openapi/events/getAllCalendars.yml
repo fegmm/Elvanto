@@ -25,14 +25,15 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            calendars:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    calendar:
-                      type: array
-                      items: {$ref: '#/components/schemas/Calendar'}
+            calendars: {$ref: '#/components/schemas/Calendars'}
+    Calendars:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            calendar:
+              type: array
+              items: {$ref: '#/components/schemas/Calendar'}
     Calendar:
       type: object
       properties:

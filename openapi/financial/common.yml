@@ -1,5 +1,17 @@
 components:
   schemas:
+    TransactionBatch:
+      type: object
+      properties:
+        id: {type: string}
+        number: {type: integer}
+        name: {type: string}
+    TransactionPerson:
+      type: object
+      properties:
+        id: {type: string}
+        firstname: {type: string}
+        lastname: {type: string}
     UpsertTransactionResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
@@ -9,18 +21,8 @@ components:
               type: object
               properties:
                 id: {type: string}
-                batch:
-                  type: object
-                  properties:
-                    id: {type: string}
-                    number: {type: integer}
-                    name: {type: string}
-                person:
-                  type: object
-                  properties:
-                    id: {type: string}
-                    firstname: {type: string}
-                    lastname: {type: string}
+                batch: {$ref: '#/components/schemas/TransactionBatch'}
+                person: {$ref: '#/components/schemas/TransactionPerson'}
     Transaction:
       type: object
       properties:
@@ -33,27 +35,8 @@ components:
         transaction_datetime: {type: string, format: date-time}
         transaction_method: {type: string}
         check_number: {type: string}
-        batch:
-          type: object
-          properties:
-            id: {type: string}
-            number: {type: integer}
-            name: {type: string}
+        batch: {$ref: '#/components/schemas/TransactionBatch'}
         transaction_total: {type: number}
-        amounts:
-          type: array
-          items:
-            type: object
-            properties:
-              amount:
-                type: array
-                items:
-                  id: {type: string}
-                  category: {$ref: '#/components/schemas/IdName'}
-                  total: {type: number}
-                  tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}
-                  memo: {type: string}
-                  external_notes: {type: string}
         created_by_id: {type: string}
         created_by_first_name: {type: string}
         created_by_last_name: {type: string}
@@ -62,3 +45,45 @@ components:
         updated_by_first_name: {type: string}
         updated_by_last_name: {type: string}
         updated_at: {type: string, format: date-time}
+        amounts: {$ref: '#/components/schemas/TransactionAmounts'}
+    TransactionAmounts:
+      type: object
+      properties:
+        amount:
+          type: array
+          items: {$ref: '#/components/schemas/TransactionAmount'}
+    TransactionAmount:
+      type: object
+      properties:
+        id: {type: string}
+        category: {$ref: '#/components/schemas/IdName'}
+        total: {type: number}
+        tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}
+        memo: {type: string}
+        external_notes: {type: string}
+    TransactionCreateAmount:
+      type: object
+      properties:
+        category_id: {type: string}
+        total: {type: number}
+        tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}
+        memo: {type: string}
+        external_notes: {type: string}
+    TransactionModifyAmount:
+      type: object
+      properties:
+        id: {type: string}
+        category_id: {type: string}
+        total: {type: number}
+        tax_deductible: {$ref: '#/components/schemas/BooleanIntEnum'}
+        memo: {type: string}
+        external_notes: {type: string}
+    TransactionModifyPerson:
+      type: object
+      properties:
+        id: {type: string}
+        firstname: {type: string}
+        lastname: {type: string}
+        email: {type: string}
+        mobile: {type: string}
+        phone: {type: string}

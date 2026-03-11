@@ -19,9 +19,7 @@ paths:
                     service_types: {type: array, items: {type: string}}
                     fields:
                       type: array
-                      items:
-                        type: string
-                        enum: [series_name, service_times, rehearsal_times, other_times, plans, volunteers, songs, files, notes, picture]
+                      items: {$ref: '#/components/schemas/ServiceAdditionalFields'}
       responses:
         '200':
           description: 'Success'
@@ -43,12 +41,13 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            services:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    service:
-                      type: array
-                      items: {$ref: '#/components/schemas/Service'}
+            services: {$ref: '#/components/schemas/Services'}
+    Services:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            service:
+              type: array
+              items: {$ref: '#/components/schemas/Service'}
                       

@@ -44,8 +44,11 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            arrangements:
-              id: {type: string}
-              keys:
-                type: array
-                items: {$ref: '#/components/schemas/IdName'}
+            arrangements: {$ref: '#/components/schemas/ArrangementCreated'}
+    ArrangementCreated:
+      type: object
+      properties:
+        id: {type: string}
+        keys:
+          type: array
+          items: {$ref: '#/components/schemas/IdName'}

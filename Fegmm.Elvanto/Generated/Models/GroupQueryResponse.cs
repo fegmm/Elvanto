@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The groups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.GroupQueryResponse_groups? Groups { get; set; }
+        public global::Fegmm.Elvanto.Models.Groups? Groups { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.GroupQueryResponse_groups Groups { get; set; }
+        public global::Fegmm.Elvanto.Models.Groups Groups { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "groups", n => { Groups = n.GetObjectValue<global::Fegmm.Elvanto.Models.GroupQueryResponse_groups>(global::Fegmm.Elvanto.Models.GroupQueryResponse_groups.CreateFromDiscriminatorValue); } },
+                { "groups", n => { Groups = n.GetObjectValue<global::Fegmm.Elvanto.Models.Groups>(global::Fegmm.Elvanto.Models.Groups.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.GroupQueryResponse_groups>("groups", Groups);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Groups>("groups", Groups);
         }
     }
 }

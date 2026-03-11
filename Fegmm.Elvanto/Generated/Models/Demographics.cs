@@ -17,10 +17,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The demographic property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.Demographics_demographic>? Demographic { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Demographic>? Demographic { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.Demographics_demographic> Demographic { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Demographic> Demographic { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Demographics"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "demographic", n => { Demographic = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Demographics_demographic>(global::Fegmm.Elvanto.Models.Demographics_demographic.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "demographic", n => { Demographic = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Demographic>(global::Fegmm.Elvanto.Models.Demographic.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Demographics_demographic>("demographic", Demographic);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Demographic>("demographic", Demographic);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

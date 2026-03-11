@@ -25,10 +25,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The arrangement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.ServiceSong_arrangement? Arrangement { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceArrangement? Arrangement { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.ServiceSong_arrangement Arrangement { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceArrangement Arrangement { get; set; }
 #endif
         /// <summary>The artist property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -88,7 +88,7 @@ namespace Fegmm.Elvanto.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "album", n => { Album = n.GetStringValue(); } },
-                { "arrangement", n => { Arrangement = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceSong_arrangement>(global::Fegmm.Elvanto.Models.ServiceSong_arrangement.CreateFromDiscriminatorValue); } },
+                { "arrangement", n => { Arrangement = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceArrangement>(global::Fegmm.Elvanto.Models.ServiceArrangement.CreateFromDiscriminatorValue); } },
                 { "artist", n => { Artist = n.GetStringValue(); } },
                 { "ccli_number", n => { CcliNumber = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -103,7 +103,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("album", Album);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceSong_arrangement>("arrangement", Arrangement);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceArrangement>("arrangement", Arrangement);
             writer.WriteStringValue("artist", Artist);
             writer.WriteStringValue("ccli_number", CcliNumber);
             writer.WriteStringValue("id", Id);

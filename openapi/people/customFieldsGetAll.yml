@@ -25,22 +25,24 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            custom_fields:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    custom_field: 
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          id: {type: string}
-                          name: {type: string}
-                          type: {type: string}
-                          values: 
-                            type: object
-                            properties:
-                              value: 
-                                type: array
-                                items: {$ref: '#/components/schemas/IdName'}
+            custom_fields: {$ref: '#/components/schemas/CustomFields'}
+    CustomFields:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            custom_field: {$ref: '#/components/schemas/CustomField'} 
+    CustomField:
+      type: array
+      items:
+        type: object
+        properties:
+          id: {type: string}
+          name: {type: string}
+          type: {type: string}
+          values: 
+            type: object
+            properties:
+              value: 
+                type: array
+                items: {$ref: '#/components/schemas/IdName'}

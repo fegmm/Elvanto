@@ -31,10 +31,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The files property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_files? Files { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceFiles? Files { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_files Files { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceFiles Files { get; set; }
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,18 +63,18 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The notes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_notes? Notes { get; set; }
+        public global::Fegmm.Elvanto.Models.Notes? Notes { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_notes Notes { get; set; }
+        public global::Fegmm.Elvanto.Models.Notes Notes { get; set; }
 #endif
         /// <summary>The other_times property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_other_times? OtherTimes { get; set; }
+        public global::Fegmm.Elvanto.Models.OtherTimes? OtherTimes { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_other_times OtherTimes { get; set; }
+        public global::Fegmm.Elvanto.Models.OtherTimes OtherTimes { get; set; }
 #endif
         /// <summary>The picture property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -87,18 +87,18 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The plans property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_plans? Plans { get; set; }
+        public global::Fegmm.Elvanto.Models.ServicePlans? Plans { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_plans Plans { get; set; }
+        public global::Fegmm.Elvanto.Models.ServicePlans Plans { get; set; }
 #endif
         /// <summary>The rehearsal_times property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_rehearsal_times? RehearsalTimes { get; set; }
+        public global::Fegmm.Elvanto.Models.RehearsalTimes? RehearsalTimes { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_rehearsal_times RehearsalTimes { get; set; }
+        public global::Fegmm.Elvanto.Models.RehearsalTimes RehearsalTimes { get; set; }
 #endif
         /// <summary>The series_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -111,10 +111,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The service_times property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_service_times? ServiceTimes { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceTimes? ServiceTimes { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_service_times ServiceTimes { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceTimes ServiceTimes { get; set; }
 #endif
         /// <summary>The service_type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -127,20 +127,20 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The songs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_songs? Songs { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceSongs? Songs { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_songs Songs { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceSongs Songs { get; set; }
 #endif
         /// <summary>The status property</summary>
         public int? Status { get; set; }
         /// <summary>The volunteers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Fegmm.Elvanto.Models.Service_volunteers? Volunteers { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceVolunteers? Volunteers { get; set; }
 #nullable restore
 #else
-        public global::Fegmm.Elvanto.Models.Service_volunteers Volunteers { get; set; }
+        public global::Fegmm.Elvanto.Models.ServiceVolunteers Volunteers { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Service"/> and sets the default values.
@@ -171,21 +171,21 @@ namespace Fegmm.Elvanto.Models
                 { "date_added", n => { DateAdded = n.GetDateTimeOffsetValue(); } },
                 { "date_modified", n => { DateModified = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "files", n => { Files = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_files>(global::Fegmm.Elvanto.Models.Service_files.CreateFromDiscriminatorValue); } },
+                { "files", n => { Files = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceFiles>(global::Fegmm.Elvanto.Models.ServiceFiles.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "location", n => { Location = n.GetObjectValue<global::Fegmm.Elvanto.Models.IdName>(global::Fegmm.Elvanto.Models.IdName.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "notes", n => { Notes = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_notes>(global::Fegmm.Elvanto.Models.Service_notes.CreateFromDiscriminatorValue); } },
-                { "other_times", n => { OtherTimes = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_other_times>(global::Fegmm.Elvanto.Models.Service_other_times.CreateFromDiscriminatorValue); } },
+                { "notes", n => { Notes = n.GetObjectValue<global::Fegmm.Elvanto.Models.Notes>(global::Fegmm.Elvanto.Models.Notes.CreateFromDiscriminatorValue); } },
+                { "other_times", n => { OtherTimes = n.GetObjectValue<global::Fegmm.Elvanto.Models.OtherTimes>(global::Fegmm.Elvanto.Models.OtherTimes.CreateFromDiscriminatorValue); } },
                 { "picture", n => { Picture = n.GetStringValue(); } },
-                { "plans", n => { Plans = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_plans>(global::Fegmm.Elvanto.Models.Service_plans.CreateFromDiscriminatorValue); } },
-                { "rehearsal_times", n => { RehearsalTimes = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_rehearsal_times>(global::Fegmm.Elvanto.Models.Service_rehearsal_times.CreateFromDiscriminatorValue); } },
+                { "plans", n => { Plans = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServicePlans>(global::Fegmm.Elvanto.Models.ServicePlans.CreateFromDiscriminatorValue); } },
+                { "rehearsal_times", n => { RehearsalTimes = n.GetObjectValue<global::Fegmm.Elvanto.Models.RehearsalTimes>(global::Fegmm.Elvanto.Models.RehearsalTimes.CreateFromDiscriminatorValue); } },
                 { "series_name", n => { SeriesName = n.GetStringValue(); } },
-                { "service_times", n => { ServiceTimes = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_service_times>(global::Fegmm.Elvanto.Models.Service_service_times.CreateFromDiscriminatorValue); } },
+                { "service_times", n => { ServiceTimes = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceTimes>(global::Fegmm.Elvanto.Models.ServiceTimes.CreateFromDiscriminatorValue); } },
                 { "service_type", n => { ServiceType = n.GetObjectValue<global::Fegmm.Elvanto.Models.IdName>(global::Fegmm.Elvanto.Models.IdName.CreateFromDiscriminatorValue); } },
-                { "songs", n => { Songs = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_songs>(global::Fegmm.Elvanto.Models.Service_songs.CreateFromDiscriminatorValue); } },
+                { "songs", n => { Songs = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceSongs>(global::Fegmm.Elvanto.Models.ServiceSongs.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetIntValue(); } },
-                { "volunteers", n => { Volunteers = n.GetObjectValue<global::Fegmm.Elvanto.Models.Service_volunteers>(global::Fegmm.Elvanto.Models.Service_volunteers.CreateFromDiscriminatorValue); } },
+                { "volunteers", n => { Volunteers = n.GetObjectValue<global::Fegmm.Elvanto.Models.ServiceVolunteers>(global::Fegmm.Elvanto.Models.ServiceVolunteers.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -199,21 +199,21 @@ namespace Fegmm.Elvanto.Models
             writer.WriteDateTimeOffsetValue("date_added", DateAdded);
             writer.WriteDateTimeOffsetValue("date_modified", DateModified);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_files>("files", Files);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceFiles>("files", Files);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<global::Fegmm.Elvanto.Models.IdName>("location", Location);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_notes>("notes", Notes);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_other_times>("other_times", OtherTimes);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Notes>("notes", Notes);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.OtherTimes>("other_times", OtherTimes);
             writer.WriteStringValue("picture", Picture);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_plans>("plans", Plans);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_rehearsal_times>("rehearsal_times", RehearsalTimes);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServicePlans>("plans", Plans);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.RehearsalTimes>("rehearsal_times", RehearsalTimes);
             writer.WriteStringValue("series_name", SeriesName);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_service_times>("service_times", ServiceTimes);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceTimes>("service_times", ServiceTimes);
             writer.WriteObjectValue<global::Fegmm.Elvanto.Models.IdName>("service_type", ServiceType);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_songs>("songs", Songs);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceSongs>("songs", Songs);
             writer.WriteIntValue("status", Status);
-            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Service_volunteers>("volunteers", Volunteers);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.ServiceVolunteers>("volunteers", Volunteers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

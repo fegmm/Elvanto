@@ -25,16 +25,18 @@ components:
         - $ref: '#/components/schemas/Response'
         - type: object
           properties:
-            categories:
-              allOf:
-                - $ref: '#/components/schemas/PagedResponse'
-                - type: object
-                  properties:
-                    category: 
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          id: {type: string}
-                          name: {type: string}
-                          color: {type: string}
+            categories: {$ref: '#/components/schemas/PersonCategories'}
+    PersonCategories:
+      allOf:
+        - $ref: '#/components/schemas/PagedResponse'
+        - type: object
+          properties:
+            category: 
+              type: array
+              items: {$ref: '#/components/schemas/PersonCategory'}
+    PersonCategory:
+      type: object
+      properties:
+        id: {type: string}
+        name: {type: string}
+        color: {type: string}
