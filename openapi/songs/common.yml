@@ -19,6 +19,7 @@ components:
         lyrics: {type: string}
         chord_chart_key: {type: string}
         chord_chart: {type: string}
+        files: {$ref: '#/components/schemas/Files'}
     ArrangementKey:
       type: object
       properties:
@@ -29,6 +30,7 @@ components:
         key_starting: {type: string}
         key_ending: {type: string}
         arrangement_id: {type: string}
+        files: {$ref: '#/components/schemas/Files'}
     SongCategories:
       type: object
       properties:

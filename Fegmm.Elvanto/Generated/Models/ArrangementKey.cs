@@ -26,6 +26,14 @@ namespace Fegmm.Elvanto.Models
         public DateTimeOffset? DateAdded { get; set; }
         /// <summary>The date_modified property</summary>
         public DateTimeOffset? DateModified { get; set; }
+        /// <summary>The files property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Fegmm.Elvanto.Models.Files? Files { get; set; }
+#nullable restore
+#else
+        public global::Fegmm.Elvanto.Models.Files Files { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -86,6 +94,7 @@ namespace Fegmm.Elvanto.Models
                 { "arrangement_id", n => { ArrangementId = n.GetStringValue(); } },
                 { "date_added", n => { DateAdded = n.GetDateTimeOffsetValue(); } },
                 { "date_modified", n => { DateModified = n.GetDateTimeOffsetValue(); } },
+                { "files", n => { Files = n.GetObjectValue<global::Fegmm.Elvanto.Models.Files>(global::Fegmm.Elvanto.Models.Files.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "key_ending", n => { KeyEnding = n.GetStringValue(); } },
                 { "key_starting", n => { KeyStarting = n.GetStringValue(); } },
@@ -102,6 +111,7 @@ namespace Fegmm.Elvanto.Models
             writer.WriteStringValue("arrangement_id", ArrangementId);
             writer.WriteDateTimeOffsetValue("date_added", DateAdded);
             writer.WriteDateTimeOffsetValue("date_modified", DateModified);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Files>("files", Files);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("key_ending", KeyEnding);
             writer.WriteStringValue("key_starting", KeyStarting);

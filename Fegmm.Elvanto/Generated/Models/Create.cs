@@ -9,35 +9,59 @@ namespace Fegmm.Elvanto.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class GetAll_values : IAdditionalDataHolder, IParsable
+    public partial class Create : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The value property</summary>
+        /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.IdName>? Value { get; set; }
+        public string? Id { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.IdName> Value { get; set; }
+        public string Id { get; set; }
+#endif
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The type property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
+#endif
+        /// <summary>The values property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Fegmm.Elvanto.Models.Create_values? Values { get; set; }
+#nullable restore
+#else
+        public global::Fegmm.Elvanto.Models.Create_values Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.GetAll_values"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Fegmm.Elvanto.Models.Create"/> and sets the default values.
         /// </summary>
-        public GetAll_values()
+        public Create()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Fegmm.Elvanto.Models.GetAll_values"/></returns>
+        /// <returns>A <see cref="global::Fegmm.Elvanto.Models.Create"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Fegmm.Elvanto.Models.GetAll_values CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Fegmm.Elvanto.Models.Create CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Fegmm.Elvanto.Models.GetAll_values();
+            return new global::Fegmm.Elvanto.Models.Create();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +71,10 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.IdName>(global::Fegmm.Elvanto.Models.IdName.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
+                { "values", n => { Values = n.GetObjectValue<global::Fegmm.Elvanto.Models.Create_values>(global::Fegmm.Elvanto.Models.Create_values.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +84,10 @@ namespace Fegmm.Elvanto.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.IdName>("value", Value);
+            writer.WriteStringValue("id", Id);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("type", Type);
+            writer.WriteObjectValue<global::Fegmm.Elvanto.Models.Create_values>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

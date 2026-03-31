@@ -15,10 +15,10 @@ namespace Fegmm.Elvanto.Models
         /// <summary>The custom_field property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Fegmm.Elvanto.Models.GetAll>? CustomField { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Create>? CustomField { get; set; }
 #nullable restore
 #else
-        public List<global::Fegmm.Elvanto.Models.GetAll> CustomField { get; set; }
+        public List<global::Fegmm.Elvanto.Models.Create> CustomField { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace Fegmm.Elvanto.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "custom_field", n => { CustomField = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.GetAll>(global::Fegmm.Elvanto.Models.GetAll.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "custom_field", n => { CustomField = n.GetCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Create>(global::Fegmm.Elvanto.Models.Create.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Fegmm.Elvanto.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.GetAll>("custom_field", CustomField);
+            writer.WriteCollectionOfObjectValues<global::Fegmm.Elvanto.Models.Create>("custom_field", CustomField);
         }
     }
 }
