@@ -23,10 +23,17 @@ public static class PersonExtensions
                 strValue : null;
 
         public DateOnly? GetDateCustomField(string customField)
-            => person.AdditionalData.TryGetValue(customField, out object? value) &&
-                value is string strValue &&
-                DateOnly.TryParse(strValue, out DateOnly date) ?
-                date : null;
+        {
+            person.AdditionalData.TryGetValue(customField, out object? value);
+
+            return value switch
+            {
+                DateOnly date => date,
+                DateTime dateTime => DateOnly.FromDateTime(dateTime),
+                string strValue when DateOnly.TryParse(strValue, out DateOnly date) => date,
+                _ => null
+            };
+        }
 
         public int? GetNumberCustomField(string customField)
             => person.AdditionalData.TryGetValue(customField, out object? value) &&
