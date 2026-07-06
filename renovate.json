@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "schedule:weekly",
+    "group:monorepos",
+    "group:recommended"
+  ],
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
+  "postUpdateOptions": [
+    "dotnetRestore"
+  ],
+  "nuget": {
+    "fileMatch": [
+      "\\.csproj$",
+      "\\.props$",
+      "\\.targets$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "Microsoft.Kiota.Abstractions",
+        "Microsoft.Kiota.Http.HttpClientLibrary",
+        "Microsoft.Kiota.Serialization.Form",
+        "Microsoft.Kiota.Serialization.Json",
+        "Microsoft.Kiota.Serialization.Multipart",
+        "Microsoft.Kiota.Serialization.Text"
+      ],
+      "groupName": "Kiota packages",
+      "groupSlug": "kiota"
+    },
+    {
+      "matchPackageNames": [
+        "Microsoft.Extensions.*"
+      ],
+      "groupName": "Microsoft.Extensions packages",
+      "groupSlug": "microsoft-extensions"
+    },
+    {
+      "matchPackageNames": [
+        "xunit.v3.mtp-v2"
+      ],
+      "groupName": "xunit packages",
+      "groupSlug": "xunit"
+    }
+  ]
+}

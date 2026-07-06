@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Microsoft.Extensions packages -->
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.9" />
+
+    <!-- Microsoft.Kiota packages -->
+    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="2.0.0" />
+
+    <!-- Testing packages -->
+    <PackageVersion Include="xunit.v3.mtp-v2" Version="3.2.2" />
+  </ItemGroup>
+</Project>
